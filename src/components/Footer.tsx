@@ -13,7 +13,7 @@ function Copyright() {
     >
       {'Copyright © '}
       <Link color='inherit' href='https://kristenmazza.dev/'>
-        kristenmazza.dev
+        Kristen Mazza
       </Link>{' '}
       {new Date().getFullYear()}
     </Typography>

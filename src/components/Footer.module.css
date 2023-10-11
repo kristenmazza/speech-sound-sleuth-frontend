@@ -1,8 +1,10 @@
 .footer {
-  background-color: rgb(237, 237, 237);
+  background-color: #2e3b55;
   padding: 1.5rem;
+  border-top: 1px solid #465676;
 }
 
 .copyright {
   text-align: center;
+  color: rgb(255, 255, 255) !important;
 }
