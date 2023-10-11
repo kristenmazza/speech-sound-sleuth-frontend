@@ -10,8 +10,8 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
+  maxWidth: 400,
+  bgcolor: 'rgb(230, 234, 237)',
   boxShadow: 24,
   p: 4,
 };
@@ -24,7 +24,7 @@ export default function HelpModal() {
   return (
     <div>
       <Tooltip title='How to Play'>
-        <IconButton onClick={handleOpen} sx={{ color: '#ffffff' }}>
+        <IconButton onClick={handleOpen} sx={{ color: 'rgb(242, 242, 242)' }}>
           <HelpIcon sx={{ fontSize: 40 }} />
         </IconButton>
       </Tooltip>
@@ -33,6 +33,7 @@ export default function HelpModal() {
         onClose={handleClose}
         aria-labelledby='help'
         aria-describedby='modal-modal-description'
+        sx={{ color: 'rgb(15, 15, 15)' }}
       >
         <Box sx={style}>
           <Typography id='help' variant='h6' component='h2'>

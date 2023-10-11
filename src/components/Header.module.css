@@ -1,6 +1,21 @@
+header.mainHeader {
+  background-color: #2e3b55;
+  color: rgb(242, 242, 242);
+  height: auto;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  box-shadow: none;
+}
+
+header.mainHeader.mainHeaderBorder {
+  border-bottom: 1px solid #465676;
+}
+
 .logo {
   max-width: 300px;
   height: auto;
+  color: #36445f;
 }
 
 .logoSmall {
