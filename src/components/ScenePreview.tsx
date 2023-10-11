@@ -1,5 +1,5 @@
 import Grid from '@mui/material/Grid';
-import styles from './ScenePreviews.module.css';
+import styles from './ScenePreview.module.css';
 import {
   Card,
   CardActionArea,
@@ -7,8 +7,19 @@ import {
   CardMedia,
   Typography,
 } from '@mui/material';
+import { FC } from 'react';
 
-export default function ScenePreview() {
+interface ScenePreviewProps {
+  sceneHref: string;
+  sceneImage: string;
+  sceneTitle: string;
+}
+
+const ScenePreview: FC<ScenePreviewProps> = ({
+  sceneHref,
+  sceneImage,
+  sceneTitle,
+}) => {
   return (
     <Grid key='1' item>
       <Card
@@ -18,11 +29,11 @@ export default function ScenePreview() {
           border: '2px solid #465676',
         }}
       >
-        <CardActionArea href='/busy-street/sounds'>
+        <CardActionArea href={sceneHref}>
           <CardMedia
             sx={{ height: 200 }}
-            image='/images/scene-previews/busystreet-preview.jpg'
-            title='Busy Street'
+            image={sceneImage}
+            title={sceneTitle}
           />
           <CardContent>
             <Typography
@@ -31,11 +42,13 @@ export default function ScenePreview() {
               component='div'
               className={styles.sceneTitle}
             >
-              Busy Street
+              {sceneTitle}
             </Typography>
           </CardContent>
         </CardActionArea>
       </Card>
     </Grid>
   );
-}
+};
+
+export default ScenePreview;
