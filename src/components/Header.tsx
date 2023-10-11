@@ -12,6 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import styles from './Header.module.css';
 import HelpModal from './HelpModal';
 import { FC } from 'react';
+import logo from '/public/images/logo-speech-sound-sleuth.png';
 
 interface HeaderProps {
   isGamePage: boolean;
@@ -59,7 +60,7 @@ const Header: FC<HeaderProps> = ({ isGamePage }) => {
                     component='img'
                     className={styles.logo}
                     alt='Logo'
-                    src='images/logo-speech-sound-sleuth.png'
+                    src={logo}
                   />
                 </Typography>
 
@@ -114,7 +115,7 @@ const Header: FC<HeaderProps> = ({ isGamePage }) => {
                     component='img'
                     className={styles.logoSmall}
                     alt='Logo'
-                    src='images/logo-speech-sound-sleuth.png'
+                    src={logo}
                   />
                 </Typography>
                 <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -169,7 +170,7 @@ const Header: FC<HeaderProps> = ({ isGamePage }) => {
                   component='img'
                   className={styles.logo}
                   alt='Logo'
-                  src='images/logo-speech-sound-sleuth.png'
+                  src={logo}
                 />
               </Typography>
 
@@ -224,7 +225,7 @@ const Header: FC<HeaderProps> = ({ isGamePage }) => {
                   component='img'
                   className={styles.logoSmall}
                   alt='Logo'
-                  src='images/logo-speech-sound-sleuth.png'
+                  src={logo}
                 />
               </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>

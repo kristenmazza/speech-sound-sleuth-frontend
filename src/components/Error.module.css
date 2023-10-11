@@ -1,0 +1,12 @@
+.errorHeading,
+p {
+  color: rgb(242, 242, 242);
+}
+
+.errorHeading {
+  padding: 0;
+  margin: 0;
+  font-size: 30px;
+  margin: 0;
+  text-transform: uppercase;
+}
