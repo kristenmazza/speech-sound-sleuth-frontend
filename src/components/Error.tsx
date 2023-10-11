@@ -18,8 +18,8 @@ const Error: FC = () => {
     >
       <Toolbar sx={{ height: '1rem' }} />
       <h1 className={styles.errorHeading}>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>
+      <p className={styles.errorPg}>Sorry, an unexpected error has occurred.</p>
+      <p className={styles.errorPg}>
         {isRouteErrorResponse(error)
           ? error.data.message || error.statusText
           : 'Not found.'}

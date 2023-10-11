@@ -45,7 +45,7 @@ const Header: FC<HeaderProps> = ({ isGamePage }) => {
       {isGamePage ? (
         <div style={{ position: 'relative' }}>
           <AppBar className={styles.mainHeader}>
-            <Container maxWidth='lg'>
+            <Container maxWidth='md'>
               <Toolbar disableGutters>
                 <Typography
                   noWrap
@@ -155,7 +155,7 @@ const Header: FC<HeaderProps> = ({ isGamePage }) => {
         </div>
       ) : (
         <AppBar className={`${styles.mainHeader} ${styles.mainHeaderBorder}`}>
-          <Container maxWidth='lg'>
+          <Container maxWidth='md'>
             <Toolbar disableGutters>
               <Typography
                 noWrap

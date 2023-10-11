@@ -1,0 +1,35 @@
+.decorativeImage {
+  max-height: 250px;
+  display: none;
+}
+
+.heading,
+.list,
+.description > p {
+  color: rgb(242, 242, 242);
+}
+
+.coloredText {
+  background-image: linear-gradient(
+    45deg,
+    rgb(1, 187, 177) 0%,
+    rgb(254, 252, 219) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
+
+li > .listIcon {
+  min-width: 30px;
+  align-self: flex-start;
+  padding-top: 7px;
+  color: rgb(240, 240, 149);
+}
+
+@media (min-width: 900px) {
+  .decorativeImage {
+    display: block;
+  }
+}

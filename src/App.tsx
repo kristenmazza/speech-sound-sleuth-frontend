@@ -15,10 +15,10 @@ function App() {
       <Header isGamePage={isGamePage} />
       <Box
         className='main'
-        height='100vh'
         width='100%'
         display='flex'
         flexDirection='column'
+        sx={{ padding: 0 }}
       >
         <Outlet context={{ isGamePage, setIsGamePage }} />
       </Box>
