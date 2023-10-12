@@ -8,7 +8,5 @@
 }
 
 body {
-  /* prevents content shifting on modal click */
-  padding: 10 !important;
   background-color: #2e3b55;
 }

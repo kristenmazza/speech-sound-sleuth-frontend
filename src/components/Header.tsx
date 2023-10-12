@@ -131,7 +131,7 @@ const Header: FC<HeaderProps> = ({ isGamePage }) => {
                 </Box>
 
                 <Box sx={{ flexGrow: 0 }}>
-                  <HelpModal />
+                  <HelpModal  />
                   <Menu
                     sx={{ mt: '45px' }}
                     id='menu-appbar'

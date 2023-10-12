@@ -29,6 +29,7 @@ export default function HelpModal() {
         </IconButton>
       </Tooltip>
       <Modal
+        disableScrollLock={true}
         open={open}
         onClose={handleClose}
         aria-labelledby='help'
