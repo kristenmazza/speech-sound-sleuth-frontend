@@ -1,0 +1,15 @@
+.heading {
+  color: rgb(242, 242, 242);
+}
+
+.sound {
+  height: 300px;
+  width: auto;
+}
+
+.soundCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(39, 50, 71);
+}

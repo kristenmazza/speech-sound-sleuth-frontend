@@ -21,7 +21,7 @@ const ScenePreview: FC<ScenePreviewProps> = ({
   sceneTitle,
 }) => {
   return (
-    <Grid key='1' item>
+    <Grid item>
       <Card
         sx={{
           width: 250,
@@ -31,7 +31,7 @@ const ScenePreview: FC<ScenePreviewProps> = ({
       >
         <CardActionArea href={sceneHref}>
           <CardMedia
-            sx={{ height: 200 }}
+            sx={{ height: 250 }}
             image={sceneImage}
             title={sceneTitle}
           />
