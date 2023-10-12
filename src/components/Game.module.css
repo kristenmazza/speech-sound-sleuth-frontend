@@ -6,7 +6,7 @@
 
 .imageWrapper {
   border: 10px solid rgb(79, 93, 106);
-  width: 80%;
+  width: 90%;
   background-color: rgb(16, 18, 27);
   position: relative;
 
@@ -51,4 +51,10 @@
 .zoomControlMenu.expanded {
   right: -4rem;
   padding: 0.5rem 4.5rem 0.5rem 0.5rem;
+}
+
+@media (min-width: 900px) {
+  .imageWrapper {
+    width: 80%;
+  }
 }
