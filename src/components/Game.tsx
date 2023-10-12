@@ -1,15 +1,19 @@
 import Box from '@mui/material/Box';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useGameContext } from '../context/useGameContext';
+import styles from './Game.module.css';
+import GameImage from './GameImage';
 
 const Game: FC = () => {
   const { setIsGamePage } = useGameContext();
 
-  setIsGamePage(true);
+  useEffect(() => {
+    setIsGamePage(true);
+  }, [setIsGamePage]);
 
   return (
-    <Box component='main' sx={{ p: 3 }}>
-      This is the GAME page.
+    <Box component='main' className={styles.main} sx={{ p: 3 }}>
+      <GameImage />
     </Box>
   );
 };
