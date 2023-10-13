@@ -9,6 +9,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { CircularProgress } from '@mui/material';
 
 export default function GameImage() {
   const [isControlMenuOpen, setIsControlMenuOpen] = useState(false);
@@ -50,7 +51,7 @@ export default function GameImage() {
         className={styles.gameContainer}
         style={{ display: imageLoading ? 'flex' : 'none' }}
       >
-        Loading image...
+        <CircularProgress sx={{ color: 'rgb(0, 182, 177)' }} />
       </div>
       <div
         className={styles.gameContainer}
