@@ -16,6 +16,11 @@ export default function GameImage() {
     mouseX: number;
     mouseY: number;
   } | null>(null);
+  const [imageLoading, setImageLoading] = useState(true);
+
+  const imageLoaded = () => {
+    setImageLoading(false);
+  };
 
   // Toggles image menu's visibility on click by setting its position based on
   // mouse click coordinates
@@ -41,84 +46,103 @@ export default function GameImage() {
 
   return (
     <>
-      {/* TransformWrapper allows image to be pinched/zoomed */}
-      <TransformWrapper
-        initialScale={1.01}
-        initialPositionX={0}
-        initialPositionY={0}
+      <div
+        className={styles.gameContainer}
+        style={{ display: imageLoading ? 'flex' : 'none' }}
       >
-        {({ zoomIn, zoomOut, resetTransform }) => (
-          <React.Fragment>
-            <div className={styles.imageWrapper}>
-              <TransformComponent>
-                <div onClick={handleImageMenu} style={{ cursor: 'image-menu' }}>
-                  <img
-                    className={styles.image}
-                    src='https://kristen-mazza-blog-images.s3.us-west-1.amazonaws.com/uploads/busystreet.png'
-                    alt='test'
-                  />
-                </div>
-              </TransformComponent>
-            </div>
-
-            {/* Zoom controls */}
-            <aside
-              className={
-                isControlMenuOpen
-                  ? `${styles.zoomControlMenu} ${styles.expanded}`
-                  : `${styles.zoomControlMenu}`
-              }
-            >
-              <IconButton
-                onClick={toggleControlMenu}
-                aria-label='Toggle zoom controls'
-              >
-                {isControlMenuOpen ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-              </IconButton>
-
-              <IconButton
-                disabled={!isControlMenuOpen}
-                aria-label='Zoom In'
-                onClick={() => zoomIn()}
-              >
-                <ZoomInIcon />
-              </IconButton>
-              <IconButton
-                disabled={!isControlMenuOpen}
-                aria-label='Zoom Out'
-                onClick={() => zoomOut()}
-              >
-                <ZoomOutIcon />
-              </IconButton>
-              <IconButton
-                disabled={!isControlMenuOpen}
-                aria-label='Reset Image'
-                onClick={() => resetTransform()}
-              >
-                <CenterFocusStrongIcon />
-              </IconButton>
-            </aside>
-          </React.Fragment>
-        )}
-      </TransformWrapper>
-
-      {/* Image menu for hidden item selection */}
-      <Menu
-        disableScrollLock={true}
-        open={imageMenu !== null}
-        onClose={handleImageMenuClose}
-        anchorReference='anchorPosition'
-        anchorPosition={
-          imageMenu !== null
-            ? { top: imageMenu.mouseY, left: imageMenu.mouseX }
-            : undefined
-        }
+        Loading image...
+      </div>
+      <div
+        className={styles.gameContainer}
+        style={{ display: imageLoading ? 'none' : 'flex' }}
       >
-        <MenuItem onClick={handleImageMenuClose}>Item1</MenuItem>
-        <MenuItem onClick={handleImageMenuClose}>Item2</MenuItem>
-        <MenuItem onClick={handleImageMenuClose}>Item3</MenuItem>
-        <MenuItem onClick={handleImageMenuClose}>Item4</MenuItem>
-      </Menu>
+        {/* TransformWrapper allows image to be pinched/zoomed */}
+        <TransformWrapper
+          initialScale={1.01}
+          initialPositionX={0}
+          initialPositionY={0}
+        >
+          {({ zoomIn, zoomOut, resetTransform }) => (
+            <React.Fragment>
+              <div className={styles.imageWrapper}>
+                <TransformComponent>
+                  <div
+                    onClick={handleImageMenu}
+                    style={{ cursor: 'image-menu' }}
+                  >
+                    <img
+                      className={styles.image}
+                      src='https://kristen-mazza-blog-images.s3.us-west-1.amazonaws.com/uploads/busystreet.png'
+                      alt='test'
+                      onLoad={imageLoaded}
+                    />
+                  </div>
+                </TransformComponent>
+              </div>
+
+              {/* Zoom controls */}
+              <aside
+                className={
+                  isControlMenuOpen
+                    ? `${styles.zoomControlMenu} ${styles.expanded}`
+                    : `${styles.zoomControlMenu}`
+                }
+              >
+                <IconButton
+                  onClick={toggleControlMenu}
+                  aria-label='Toggle zoom controls'
+                >
+                  {isControlMenuOpen ? (
+                    <ChevronRightIcon />
+                  ) : (
+                    <ChevronLeftIcon />
+                  )}
+                </IconButton>
+
+                <IconButton
+                  disabled={!isControlMenuOpen}
+                  aria-label='Zoom In'
+                  onClick={() => zoomIn()}
+                >
+                  <ZoomInIcon />
+                </IconButton>
+                <IconButton
+                  disabled={!isControlMenuOpen}
+                  aria-label='Zoom Out'
+                  onClick={() => zoomOut()}
+                >
+                  <ZoomOutIcon />
+                </IconButton>
+                <IconButton
+                  disabled={!isControlMenuOpen}
+                  aria-label='Reset Image'
+                  onClick={() => resetTransform()}
+                >
+                  <CenterFocusStrongIcon />
+                </IconButton>
+              </aside>
+            </React.Fragment>
+          )}
+        </TransformWrapper>
+
+        {/* Image menu for hidden item selection */}
+        <Menu
+          disableScrollLock={true}
+          open={imageMenu !== null}
+          onClose={handleImageMenuClose}
+          anchorReference='anchorPosition'
+          anchorPosition={
+            imageMenu !== null
+              ? { top: imageMenu.mouseY, left: imageMenu.mouseX }
+              : undefined
+          }
+        >
+          <MenuItem onClick={handleImageMenuClose}>Item1</MenuItem>
+          <MenuItem onClick={handleImageMenuClose}>Item2</MenuItem>
+          <MenuItem onClick={handleImageMenuClose}>Item3</MenuItem>
+          <MenuItem onClick={handleImageMenuClose}>Item4</MenuItem>
+        </Menu>
+      </div>
     </>
   );
 }
