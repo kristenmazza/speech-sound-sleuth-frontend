@@ -2,14 +2,21 @@
   color: rgb(242, 242, 242);
 }
 
-.sound {
-  height: 300px;
-  width: auto;
+.soundContainer {
+  display: flex;
+  gap: 2rem;
+
+  .soundLink:hover {
+    background-color: transparent;
+  }
 }
 
-.soundCard {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgb(39, 50, 71);
+.soundImage {
+  max-height: 300px;
+  max-width: 100%;
+  opacity: 0.8;
+
+  &:hover {
+    opacity: 1;
+  }
 }

@@ -1,4 +1,3 @@
-import Grid from '@mui/material/Grid';
 import styles from './ScenePreview.module.css';
 import {
   Card,
@@ -21,14 +20,8 @@ const ScenePreview: FC<ScenePreviewProps> = ({
   sceneTitle,
 }) => {
   return (
-    <Grid item>
-      <Card
-        sx={{
-          width: 250,
-          backgroundColor: 'rgb(59, 74, 105)',
-          border: '2px solid #465676',
-        }}
-      >
+    <div className={styles.sceneCardContainer}>
+      <Card className={styles.sceneCard}>
         <CardActionArea href={sceneHref}>
           <CardMedia
             sx={{ height: 250 }}
@@ -47,7 +40,7 @@ const ScenePreview: FC<ScenePreviewProps> = ({
           </CardContent>
         </CardActionArea>
       </Card>
-    </Grid>
+    </div>
   );
 };
 
