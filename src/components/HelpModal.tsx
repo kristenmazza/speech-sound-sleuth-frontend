@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { IconButton, Tooltip } from '@mui/material';
 import HelpIcon from '@mui/icons-material/Help';
+import styles from './HelpModal.module.css';
 
 const style = {
   position: 'absolute' as const,
@@ -24,7 +25,11 @@ export default function HelpModal() {
   return (
     <div>
       <Tooltip title='How to Play'>
-        <IconButton onClick={handleOpen} sx={{ color: 'rgb(242, 242, 242)' }}>
+        <IconButton
+          className={styles.iconButtonPadding}
+          onClick={handleOpen}
+          sx={{ color: 'rgb(242, 242, 242)' }}
+        >
           <HelpIcon sx={{ fontSize: 40 }} />
         </IconButton>
       </Tooltip>

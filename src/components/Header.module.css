@@ -7,6 +7,10 @@ header.mainHeader {
   z-index: 2;
   box-shadow: none;
   padding: 0 !important;
+
+  .headerPadding {
+    padding: 0 40px;
+  }
 }
 
 header.mainHeader.mainHeaderBorder {
@@ -31,4 +35,8 @@ header.mainHeader.mainHeaderBorder {
   padding: 0;
   margin: 0;
   width: 100%;
+}
+
+.iconButtonPadding {
+  padding-left: 0 !important;
 }

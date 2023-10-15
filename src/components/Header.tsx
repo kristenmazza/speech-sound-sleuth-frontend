@@ -13,6 +13,7 @@ import styles from './Header.module.css';
 import HelpModal from './HelpModal';
 import { FC } from 'react';
 import logo from '/public/images/logo-speech-sound-sleuth.png';
+import Accordian from './Accordian';
 
 interface HeaderProps {
   isGamePage: boolean;
@@ -45,7 +46,7 @@ const Header: FC<HeaderProps> = ({ isGamePage }) => {
       {isGamePage ? (
         <div style={{ position: 'relative' }}>
           <AppBar className={styles.mainHeader}>
-            <Container maxWidth='md'>
+            <Container maxWidth='xl' className={styles.headerPadding}>
               <Toolbar disableGutters>
                 <Typography
                   noWrap
@@ -72,6 +73,7 @@ const Header: FC<HeaderProps> = ({ isGamePage }) => {
                     aria-haspopup='true'
                     onClick={handleOpenNavMenu}
                     color='inherit'
+                    className={styles.iconButtonPadding}
                   >
                     <MenuIcon />
                   </IconButton>
@@ -131,7 +133,7 @@ const Header: FC<HeaderProps> = ({ isGamePage }) => {
                 </Box>
 
                 <Box sx={{ flexGrow: 0 }}>
-                  <HelpModal  />
+                  <HelpModal />
                   <Menu
                     sx={{ mt: '45px' }}
                     id='menu-appbar'
@@ -155,7 +157,7 @@ const Header: FC<HeaderProps> = ({ isGamePage }) => {
         </div>
       ) : (
         <AppBar className={`${styles.mainHeader} ${styles.mainHeaderBorder}`}>
-          <Container maxWidth='md'>
+          <Container maxWidth='xl' className={styles.headerPadding}>
             <Toolbar disableGutters>
               <Typography
                 noWrap
@@ -182,6 +184,7 @@ const Header: FC<HeaderProps> = ({ isGamePage }) => {
                   aria-haspopup='true'
                   onClick={handleOpenNavMenu}
                   color='inherit'
+                  className={styles.iconButtonPadding}
                 >
                   <MenuIcon />
                 </IconButton>
@@ -274,13 +277,11 @@ const Header: FC<HeaderProps> = ({ isGamePage }) => {
             zIndex: 1,
           }}
         >
-          <Container maxWidth='xl'>
-            <Toolbar disableGutters>
-              <div className={styles.gameBar}>
-                <Typography variant='h6'>Timer & Find</Typography>
-              </div>
-            </Toolbar>
-          </Container>
+          <Toolbar disableGutters>
+            <div className={styles.gameBar}>
+              <Accordian />
+            </div>
+          </Toolbar>
         </AppBar>
       ) : (
         ''
