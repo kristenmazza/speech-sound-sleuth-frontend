@@ -28,7 +28,7 @@ export default function HelpModal() {
         <IconButton
           className={styles.iconButtonPadding}
           onClick={handleOpen}
-          sx={{ color: 'rgb(242, 242, 242)' }}
+          sx={{ color: 'rgb(215, 215, 215)' }}
         >
           <HelpIcon sx={{ fontSize: 40 }} />
         </IconButton>

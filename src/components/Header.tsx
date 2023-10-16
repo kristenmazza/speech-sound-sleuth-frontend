@@ -125,7 +125,11 @@ const Header: FC<HeaderProps> = ({ isGamePage }) => {
                     <Button
                       key={page}
                       onClick={handleCloseNavMenu}
-                      sx={{ my: 2, color: 'white', display: 'block' }}
+                      sx={{
+                        my: 2,
+                        color: 'rgb(215, 215, 215)',
+                        display: 'block',
+                      }}
                     >
                       {page}
                     </Button>
@@ -236,7 +240,11 @@ const Header: FC<HeaderProps> = ({ isGamePage }) => {
                   <Button
                     key={page}
                     onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: 'white', display: 'block' }}
+                    sx={{
+                      my: 2,
+                      color: 'rgb(215, 215, 215)',
+                      display: 'block',
+                    }}
                   >
                     {page}
                   </Button>
@@ -270,11 +278,13 @@ const Header: FC<HeaderProps> = ({ isGamePage }) => {
         <AppBar
           sx={{
             backgroundColor: '#36445f',
-            color: 'rgb(242, 242, 242)',
+            color: 'rgb(215, 215, 215)',
             height: 'auto',
             position: 'sticky',
             top: '0',
             zIndex: 1,
+            boxShadow: 2,
+            borderBottom: '1px solid #3c4a66',
           }}
         >
           <Toolbar disableGutters>

@@ -1,6 +1,6 @@
 header.mainHeader {
   background-color: #2e3b55;
-  color: rgb(242, 242, 242);
+  color: rgb(215, 215, 215);
   height: auto;
   position: sticky;
   top: 0;
@@ -38,5 +38,6 @@ header.mainHeader.mainHeaderBorder {
 }
 
 .iconButtonPadding {
-  padding-left: 0 !important;
+  padding: 0 !important;
+  margin-right: 1rem;
 }
