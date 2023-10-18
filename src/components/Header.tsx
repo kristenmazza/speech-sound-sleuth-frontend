@@ -12,7 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import styles from './Header.module.css';
 import HelpModal from './HelpModal';
 import { FC } from 'react';
-import logo from '/public/images/logo-speech-sound-sleuth.png';
+import logo from '/images/logo-speech-sound-sleuth.png';
 import Accordian from './Accordian';
 
 interface HeaderProps {
