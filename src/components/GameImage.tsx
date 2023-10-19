@@ -22,7 +22,9 @@ export default function GameImage() {
     mouseY: number;
   } | null>(null);
   const [imageLoading, setImageLoading] = useState(true);
-  const [coordinates, setCoordinates] = useState<[number, number]>([0, 0]);
+  const [coordinates, setCoordinates] = useState<
+    [number, number] | [null, null]
+  >([null, null]);
   const [scale, setScale] = useState<number>(1.01);
 
   const imageLoaded = () => {
@@ -64,8 +66,8 @@ export default function GameImage() {
     const yPx = (event.clientY - imageRect.top) / scale;
 
     // Calculate position as a percentage within the visible area of the zoomed image
-    const xPercent = xPx / visibleImageWidth;
-    const yPercent = yPx / visibleImageHeight;
+    const xPercent = (xPx / visibleImageWidth) * 100;
+    const yPercent = (yPx / visibleImageHeight) * 100;
 
     setCoordinates([xPercent, yPercent]);
     console.log(xPercent, yPercent);
@@ -114,6 +116,16 @@ export default function GameImage() {
                     onClick={handleImageClick}
                     style={{ cursor: 'image-menu' }}
                   >
+                    {/* Target box */}
+                    {coordinates[0] !== null && coordinates[1] !== null && (
+                      <div
+                        className={styles.targetBox}
+                        style={{
+                          top: `${coordinates[1] - 2.1}%`,
+                          left: `${coordinates[0] - 1.2}%`,
+                        }}
+                      ></div>
+                    )}
                     <img
                       className={styles.image}
                       id='gameImage'
