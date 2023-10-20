@@ -10,11 +10,11 @@
   border: 10px solid rgb(79, 93, 106);
   width: 90%;
   background-color: rgb(16, 18, 27);
-  position: relative;
 }
 
 .image {
   width: 100%;
+  height: auto;
 }
 
 .zoomControlMenu {
