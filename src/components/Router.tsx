@@ -15,7 +15,7 @@ const Router = () => {
       children: [
         { index: true, element: <Home /> },
         {
-          path: '/:sceneTitle/sounds',
+          path: '/:sceneTitle',
           element: <Sounds />,
         },
         {
