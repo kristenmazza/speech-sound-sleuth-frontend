@@ -7,11 +7,11 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import IconButton from '@mui/material/IconButton';
 import { FC, useState } from 'react';
 
-interface ZoomControlsProps {
+type ZoomControlsProps = {
   zoomIn: () => void;
   zoomOut: () => void;
   resetTransform: () => void;
-}
+};
 
 const ZoomControls: FC<ZoomControlsProps> = ({
   zoomIn,

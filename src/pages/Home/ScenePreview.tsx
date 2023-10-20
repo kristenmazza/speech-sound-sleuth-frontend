@@ -8,11 +8,11 @@ import {
 } from '@mui/material';
 import { FC } from 'react';
 
-interface ScenePreviewProps {
+type ScenePreviewProps = {
   sceneHref: string;
   sceneImage: string;
   sceneTitle: string;
-}
+};
 
 const ScenePreview: FC<ScenePreviewProps> = ({
   sceneHref,
