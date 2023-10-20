@@ -7,12 +7,25 @@ import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 function App() {
+  const initialScene = {
+    data: {
+      hiddenImages: [],
+      imageCreditLink: '',
+      imageCreditName: '',
+      imageUrl: '',
+      sound: '',
+      title: '',
+      _id: '',
+    },
+  };
+
   const [isGamePage, setIsGamePage] = useState(false);
+  const [scene, setScene] = useState(initialScene);
 
   return (
     <>
       <CssBaseline />
-      <Header isGamePage={isGamePage} />
+      <Header isGamePage={isGamePage} scene={scene} />
       <Box
         className='main'
         width='100%'
@@ -20,9 +33,9 @@ function App() {
         flexDirection='column'
         sx={{ padding: 0 }}
       >
-        <Outlet context={{ isGamePage, setIsGamePage }} />
+        <Outlet context={{ isGamePage, setIsGamePage, scene, setScene }} />
       </Box>
-      <Footer />
+      <Footer scene={scene} />
     </>
   );
 }

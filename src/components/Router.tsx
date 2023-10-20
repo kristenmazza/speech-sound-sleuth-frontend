@@ -15,7 +15,7 @@ const Router = () => {
       children: [
         { index: true, element: <Home /> },
         {
-          path: '/:scene/sounds',
+          path: '/:sceneTitle/sounds',
           element: <Sounds />,
         },
         {
@@ -23,7 +23,7 @@ const Router = () => {
           element: <Leaderboard />,
         },
         {
-          path: '/:game/:sound/play',
+          path: '/:sceneTitle/:sound/play',
           element: <Game />,
         },
         { path: '*', element: <Error /> },

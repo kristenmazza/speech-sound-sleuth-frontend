@@ -2,7 +2,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { FC } from 'react';
 
-interface HiddenImageMenuProps {
+type HiddenImageMenuProps = {
   imageMenu: {
     mouseX: number;
     mouseY: number;
@@ -13,7 +13,7 @@ interface HiddenImageMenuProps {
       mouseY: number;
     } | null,
   ) => void;
-}
+};
 
 const ZoomControls: FC<HiddenImageMenuProps> = ({
   imageMenu,

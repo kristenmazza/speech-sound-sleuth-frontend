@@ -15,13 +15,23 @@ import { FC } from 'react';
 import logo from '/images/logo-speech-sound-sleuth.png';
 import Accordian from '../pages/Game/Accordian';
 
-interface HeaderProps {
+type HeaderProps = {
   isGamePage: boolean;
-}
+  scene: {
+    data: {
+      imageCreditLink?: string;
+      imageCreditName?: string;
+      imageUrl?: string;
+      sound?: string;
+      title?: string;
+      _id?: string;
+    };
+  };
+};
 
 const pages = ['New Game', 'Leaderboard'];
 
-const Header: FC<HeaderProps> = ({ isGamePage }) => {
+const Header: FC<HeaderProps> = ({ isGamePage, scene }) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
@@ -289,7 +299,7 @@ const Header: FC<HeaderProps> = ({ isGamePage }) => {
         >
           <Toolbar disableGutters>
             <div className={styles.gameBar}>
-              <Accordian />
+              <Accordian scene={scene} />
             </div>
           </Toolbar>
         </AppBar>
