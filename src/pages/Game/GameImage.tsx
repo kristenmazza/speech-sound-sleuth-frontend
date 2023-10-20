@@ -8,8 +8,24 @@ import {
 import { CircularProgress } from '@mui/material';
 import ZoomControls from './ZoomControls';
 import HiddenImageMenu from './HiddenImageMenu';
+import { useGameContext } from '../../context/useGameContext';
 
 export default function GameImage() {
+  type GameContextType = {
+    scene: {
+      data: {
+        imageCreditLink?: string;
+        imageCreditName?: string;
+        imageUrl?: string;
+        sound?: string;
+        title?: string;
+        _id?: string;
+      };
+    };
+  };
+
+  const { scene } = useGameContext() as GameContextType;
+
   const [imageMenu, setImageMenu] = React.useState<{
     mouseX: number;
     mouseY: number;
@@ -115,7 +131,7 @@ export default function GameImage() {
                     <img
                       className={styles.image}
                       id='gameImage'
-                      src='https://kristen-mazza-blog-images.s3.us-west-1.amazonaws.com/uploads/busystreet.png'
+                      src={scene.data.imageUrl}
                       alt='test'
                       onLoad={imageLoaded}
                     />
