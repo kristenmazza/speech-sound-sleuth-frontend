@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import { FC, useEffect } from 'react';
-import { useGameContext } from '../context/useGameContext';
+import { useGameContext } from '../../context/useGameContext';
 import styles from './Game.module.css';
 import GameImage from './GameImage';
 

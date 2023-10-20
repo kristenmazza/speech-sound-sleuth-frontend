@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Error from '../components/Error';
-import Home from './Home';
+import Home from '../pages/Home/Home';
 import App from '../App';
-import Sounds from './Sounds';
-import Game from './Game';
-import Leaderboard from './Leaderboard';
+import Sounds from '../pages/Sounds/Sounds';
+import Game from '../pages/Game/Game';
+import Leaderboard from '../pages/Leaderboard/Leaderboard';
+import Error from '../pages/Error/Error';
 
 const Router = () => {
   const router = createBrowserRouter([

@@ -13,7 +13,7 @@ import styles from './Header.module.css';
 import HelpModal from './HelpModal';
 import { FC } from 'react';
 import logo from '/images/logo-speech-sound-sleuth.png';
-import Accordian from './Accordian';
+import Accordian from '../pages/Game/Accordian';
 
 interface HeaderProps {
   isGamePage: boolean;
