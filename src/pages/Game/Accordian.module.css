@@ -35,9 +35,11 @@
   width: 75px;
   height: 75px;
   border-radius: 10px;
+  object-fit: cover;
+  overflow: hidden;
 
   & img {
-    height: 50px;
+    height: 80%;
   }
 }
 

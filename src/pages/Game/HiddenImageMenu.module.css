@@ -1,7 +1,7 @@
 .menuItem {
   display: flex;
   gap: 0.5rem;
-  color: rgb(10, 27, 38);
+  color: rgb(6, 16, 23);
 }
 
 .imgContainer {
@@ -16,7 +16,7 @@
 }
 
 .menuImg {
-  width: 90%;
+  width: 80%;
   height: auto;
   object-fit: cover;
 }
