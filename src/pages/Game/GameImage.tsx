@@ -123,8 +123,8 @@ export default function GameImage() {
                       <div
                         className={styles.targetBox}
                         style={{
-                          top: `${coordinates[1] - 2.1}%`,
-                          left: `${coordinates[0] - 1.2}%`,
+                          top: `calc(${coordinates[1]}% - 20px)`,
+                          left: `calc(${coordinates[0]}% - 15px)`,
                         }}
                       ></div>
                     )}

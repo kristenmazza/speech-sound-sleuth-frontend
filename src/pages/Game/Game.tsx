@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 const Game: FC = () => {
-  const { setIsGamePage, setScene, scene } = useGameContext();
+  const { setIsGamePage, setScene } = useGameContext();
   const { sceneTitle, sound } = useParams();
   const [error, setError] = useState<string | null>(null);
 
@@ -15,14 +15,12 @@ const Game: FC = () => {
     setIsGamePage(true);
   }, [setIsGamePage]);
 
-  console.log(import.meta.env.VITE_BACKEND_URL + `/${sceneTitle}/${sound}`);
   useEffect(() => {
     const getScene = async () => {
       try {
         const response = await axios.get(
           import.meta.env.VITE_BACKEND_URL + `/${sceneTitle}/${sound}`,
         );
-        console.log(response);
         setScene(response);
         setError(null);
       } catch (err) {
