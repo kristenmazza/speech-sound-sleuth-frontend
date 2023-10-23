@@ -16,7 +16,11 @@ type HiddenImageMenuProps = {
       mouseY: number;
     } | null,
   ) => void;
-  coordinates: [number, number] | [null, null];
+  coordinates: [number, number] | undefined;
+  correctCoordinates: Array<[number, number] | undefined>;
+  setCorrectCoordinates: (
+    correctCoordinates: Array<[number, number] | undefined>,
+  ) => void;
 };
 
 type GameContextType = {
@@ -45,6 +49,8 @@ const HiddenImageMenu: FC<HiddenImageMenuProps> = ({
   imageMenu,
   setImageMenu,
   coordinates,
+  correctCoordinates,
+  setCorrectCoordinates,
 }) => {
   const handleImageMenuClose = () => {
     setImageMenu(null);
@@ -75,10 +81,18 @@ const HiddenImageMenu: FC<HiddenImageMenuProps> = ({
 
   const validateSelection = async (hiddenImageId: string) => {
     try {
-      const response = await axios.get(
-        import.meta.env.VITE_BACKEND_URL +
-          `/image/${hiddenImageId}?x=${coordinates[0]}&y=${coordinates[1]}`,
-      );
+      let response;
+      if (coordinates) {
+        response = await axios.get(
+          import.meta.env.VITE_BACKEND_URL +
+            `/image/${hiddenImageId}?x=${coordinates[0]}&y=${coordinates[1]}`,
+        );
+      }
+      if (response) {
+        if (response.data.message === 'Correct') {
+          setCorrectCoordinates([...correctCoordinates, coordinates]);
+        }
+      }
       console.log(response);
     } catch (err) {
       if (err) {

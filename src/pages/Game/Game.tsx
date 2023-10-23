@@ -31,7 +31,7 @@ const Game: FC = () => {
     };
 
     getScene();
-  }, [sceneTitle]);
+  }, [sceneTitle, setScene, sound]);
 
   return (
     <Box component='main' className={styles.main} sx={{ p: 3 }}>

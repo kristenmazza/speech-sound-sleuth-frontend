@@ -9,6 +9,7 @@ import { CircularProgress } from '@mui/material';
 import ZoomControls from './ZoomControls';
 import HiddenImageMenu from './HiddenImageMenu';
 import { useGameContext } from '../../context/useGameContext';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function GameImage() {
   type GameContextType = {
@@ -31,10 +32,13 @@ export default function GameImage() {
     mouseY: number;
   } | null>(null);
   const [imageLoading, setImageLoading] = useState(true);
-  const [coordinates, setCoordinates] = useState<
-    [number, number] | [null, null]
-  >([null, null]);
+  const [coordinates, setCoordinates] = useState<[number, number] | undefined>(
+    undefined,
+  );
   const [scale, setScale] = useState<number>(1.01);
+  const [correctCoordinates, setCorrectCoordinates] = useState<
+    Array<[number, number] | undefined>
+  >([]);
 
   const imageLoaded = () => {
     setImageLoading(false);
@@ -90,6 +94,23 @@ export default function GameImage() {
     setScale(state.scale);
   };
 
+  const displayCorrectTargets = () => {
+    return correctCoordinates?.map((coordinates) =>
+      coordinates ? (
+        <div
+          key={uuidv4()}
+          className={styles.correctTargetBox}
+          style={{
+            top: `calc(${coordinates[1]}% - 20px)`,
+            left: `calc(${coordinates[0]}% - 15px)`,
+          }}
+        ></div>
+      ) : (
+        ''
+      ),
+    );
+  };
+
   return (
     <>
       <div
@@ -119,7 +140,7 @@ export default function GameImage() {
                     style={{ cursor: 'image-menu' }}
                   >
                     {/* Target box */}
-                    {coordinates[0] !== null && coordinates[1] !== null && (
+                    {coordinates && (
                       <div
                         className={styles.targetBox}
                         style={{
@@ -128,6 +149,7 @@ export default function GameImage() {
                         }}
                       ></div>
                     )}
+                    {correctCoordinates && displayCorrectTargets()}
                     <img
                       className={styles.image}
                       id='gameImage'
@@ -154,6 +176,8 @@ export default function GameImage() {
           imageMenu={imageMenu}
           setImageMenu={setImageMenu}
           coordinates={coordinates}
+          correctCoordinates={correctCoordinates}
+          setCorrectCoordinates={setCorrectCoordinates}
         />
       </div>
     </>
