@@ -3,6 +3,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { FC } from 'react';
 import { useGameContext } from '../../context/useGameContext';
 import styles from './HiddenImageMenu.module.css';
+import axios from 'axios';
 
 type HiddenImageMenuProps = {
   imageMenu: {
@@ -15,6 +16,7 @@ type HiddenImageMenuProps = {
       mouseY: number;
     } | null,
   ) => void;
+  coordinates: [number, number] | [null, null];
 };
 
 type GameContextType = {
@@ -39,9 +41,10 @@ type GameContextType = {
   };
 };
 
-const ZoomControls: FC<HiddenImageMenuProps> = ({
+const HiddenImageMenu: FC<HiddenImageMenuProps> = ({
   imageMenu,
   setImageMenu,
+  coordinates,
 }) => {
   const handleImageMenuClose = () => {
     setImageMenu(null);
@@ -49,15 +52,18 @@ const ZoomControls: FC<HiddenImageMenuProps> = ({
 
   const { scene } = useGameContext() as GameContextType;
 
+  const handleItemSelection = (hiddenImageId: string) => {
+    handleImageMenuClose();
+    validateSelection(hiddenImageId);
+  };
+
   let renderHiddenMenuOptions;
   if (scene.data.hiddenImages) {
-    console.log(scene.data.hiddenImages[0]);
-
     renderHiddenMenuOptions = scene.data.hiddenImages.map((item) => (
       <MenuItem
         className={styles.menuItem}
         key={item._id}
-        onClick={handleImageMenuClose}
+        onClick={() => handleItemSelection(item._id)}
       >
         <div className={styles.imgContainer}>
           <img className={styles.menuImg} src={item.imageUrl} alt='' />
@@ -66,6 +72,22 @@ const ZoomControls: FC<HiddenImageMenuProps> = ({
       </MenuItem>
     ));
   }
+
+  const validateSelection = async (hiddenImageId: string) => {
+    try {
+      const response = await axios.get(
+        import.meta.env.VITE_BACKEND_URL +
+          `/image/${hiddenImageId}?x=${coordinates[0]}&y=${coordinates[1]}`,
+      );
+      console.log(response);
+    } catch (err) {
+      if (err) {
+        const message = err instanceof Error ? err.message : String(err);
+        console.log(message);
+      }
+    }
+  };
+
   return (
     <Menu
       disableScrollLock={true}
@@ -83,4 +105,4 @@ const ZoomControls: FC<HiddenImageMenuProps> = ({
   );
 };
 
-export default ZoomControls;
+export default HiddenImageMenu;

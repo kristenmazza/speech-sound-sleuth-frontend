@@ -150,7 +150,11 @@ export default function GameImage() {
         </TransformWrapper>
 
         {/* Image menu for hidden item selection */}
-        <HiddenImageMenu imageMenu={imageMenu} setImageMenu={setImageMenu} />
+        <HiddenImageMenu
+          imageMenu={imageMenu}
+          setImageMenu={setImageMenu}
+          coordinates={coordinates}
+        />
       </div>
     </>
   );
