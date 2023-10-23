@@ -1,6 +1,6 @@
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useGameContext } from '../../context/useGameContext';
 import styles from './HiddenImageMenu.module.css';
 import axios from 'axios';
@@ -23,24 +23,26 @@ type HiddenImageMenuProps = {
   ) => void;
 };
 
+type HiddenImageType = {
+  _id: string;
+  name: string;
+  imageUrl: string;
+  minX: number;
+  maxX: number;
+  minY: number;
+  maxY: number;
+};
+
 type GameContextType = {
   scene: {
     data: {
-      imageCreditLink?: string;
-      imageCreditName?: string;
-      hiddenImages?: {
-        _id: string;
-        name: string;
-        imageUrl: string;
-        minX: number;
-        maxX: number;
-        minY: number;
-        maxY: number;
-      }[];
-      imageUrl?: string;
-      sound?: string;
-      title?: string;
-      _id?: string;
+      imageCreditLink: string;
+      imageCreditName: string;
+      hiddenImages: HiddenImageType[];
+      imageUrl: string;
+      sound: string;
+      title: string;
+      _id: string;
     };
   };
 };
@@ -57,6 +59,7 @@ const HiddenImageMenu: FC<HiddenImageMenuProps> = ({
   };
 
   const { scene } = useGameContext() as GameContextType;
+  const [foundItems, setFoundItems] = useState<HiddenImageType[]>([]);
 
   const handleItemSelection = (hiddenImageId: string) => {
     handleImageMenuClose();
@@ -64,8 +67,15 @@ const HiddenImageMenu: FC<HiddenImageMenuProps> = ({
   };
 
   let renderHiddenMenuOptions;
-  if (scene.data.hiddenImages) {
-    renderHiddenMenuOptions = scene.data.hiddenImages.map((item) => (
+  const hiddenItems = scene.data.hiddenImages;
+
+  // Displays only items still needing to be found in dropdown menu
+  if (hiddenItems) {
+    const unFoundItems = hiddenItems.filter(
+      (object1) => !foundItems.some((object2) => object1._id === object2._id),
+    );
+
+    renderHiddenMenuOptions = unFoundItems.map((item) => (
       <MenuItem
         className={styles.menuItem}
         key={item._id}
@@ -77,6 +87,7 @@ const HiddenImageMenu: FC<HiddenImageMenuProps> = ({
         {item.name}
       </MenuItem>
     ));
+    console.log(scene.data.hiddenImages);
   }
 
   const validateSelection = async (hiddenImageId: string) => {
@@ -88,12 +99,17 @@ const HiddenImageMenu: FC<HiddenImageMenuProps> = ({
             `/image/${hiddenImageId}?x=${coordinates[0]}&y=${coordinates[1]}`,
         );
       }
-      if (response) {
-        if (response.data.message === 'Correct') {
-          setCorrectCoordinates([...correctCoordinates, coordinates]);
+      if (response && response.data.message === 'Correct') {
+        setCorrectCoordinates([...correctCoordinates, coordinates]);
+
+        const foundItem = scene.data.hiddenImages.find(
+          (item) => item._id === hiddenImageId,
+        );
+
+        if (foundItem) {
+          setFoundItems([...foundItems, foundItem]);
         }
       }
-      console.log(response);
     } catch (err) {
       if (err) {
         const message = err instanceof Error ? err.message : String(err);
