@@ -17,6 +17,7 @@ import Accordian from '../pages/Game/Accordian';
 
 type HeaderProps = {
   isGamePage: boolean;
+  imageLoading: boolean;
   scene: {
     data: {
       imageCreditLink?: string;
@@ -40,7 +41,12 @@ type HeaderProps = {
 
 const pages = ['New Game', 'Leaderboard'];
 
-const Header: FC<HeaderProps> = ({ isGamePage, scene, foundItems }) => {
+const Header: FC<HeaderProps> = ({
+  isGamePage,
+  scene,
+  foundItems,
+  imageLoading,
+}) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
@@ -309,7 +315,11 @@ const Header: FC<HeaderProps> = ({ isGamePage, scene, foundItems }) => {
         >
           <Toolbar disableGutters>
             <div className={styles.gameBar}>
-              <Accordian scene={scene} foundItems={foundItems} />
+              <Accordian
+                scene={scene}
+                foundItems={foundItems}
+                imageLoading={imageLoading}
+              />
             </div>
           </Toolbar>
         </AppBar>

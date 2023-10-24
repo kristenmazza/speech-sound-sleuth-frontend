@@ -18,6 +18,8 @@ type ContextType = {
   setScene: Dispatch<SetStateAction<object>>;
   foundItems: HiddenImageType[];
   setFoundItems: Dispatch<SetStateAction<HiddenImageType[]>>;
+  imageLoading: boolean;
+  setImageLoading: Dispatch<SetStateAction<boolean>>;
 };
 
 export function useGameContext() {

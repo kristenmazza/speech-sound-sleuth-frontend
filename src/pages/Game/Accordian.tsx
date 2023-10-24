@@ -29,6 +29,7 @@ type AccordianProps = {
   scene: {
     data: SceneData;
   };
+  imageLoading: boolean;
   foundItems: {
     _id: string;
     name: string;
@@ -40,7 +41,11 @@ type AccordianProps = {
   }[];
 };
 
-const BasicAccordian: FC<AccordianProps> = ({ scene, foundItems }) => {
+const BasicAccordian: FC<AccordianProps> = ({
+  scene,
+  foundItems,
+  imageLoading,
+}) => {
   let renderedHiddenImages;
   if (scene.data.hiddenImages) {
     const hiddenImages = scene.data.hiddenImages;
@@ -72,7 +77,7 @@ const BasicAccordian: FC<AccordianProps> = ({ scene, foundItems }) => {
           id='panel1a-header'
         >
           <div className={styles.accordianDescription}>
-            <Timer />
+            {!imageLoading && <Timer />}
             <span className={styles.accordianPrompt}>View Targets</span>
           </div>
         </AccordionSummary>

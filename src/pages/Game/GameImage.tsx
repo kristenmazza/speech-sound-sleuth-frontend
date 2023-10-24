@@ -26,12 +26,11 @@ export default function GameImage() {
   };
 
   const { scene } = useGameContext() as GameContextType;
-
+  const { imageLoading, setImageLoading } = useGameContext();
   const [imageMenu, setImageMenu] = React.useState<{
     mouseX: number;
     mouseY: number;
   } | null>(null);
-  const [imageLoading, setImageLoading] = useState(true);
   const [coordinates, setCoordinates] = useState<[number, number] | undefined>(
     undefined,
   );

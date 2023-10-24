@@ -32,11 +32,17 @@ function App() {
   const [isGamePage, setIsGamePage] = useState(false);
   const [scene, setScene] = useState(initialScene);
   const [foundItems, setFoundItems] = useState<HiddenImageType[]>([]);
+  const [imageLoading, setImageLoading] = useState(true);
 
   return (
     <>
       <CssBaseline />
-      <Header isGamePage={isGamePage} scene={scene} foundItems={foundItems} />
+      <Header
+        isGamePage={isGamePage}
+        scene={scene}
+        foundItems={foundItems}
+        imageLoading={imageLoading}
+      />
       <Box
         className='main'
         width='100%'
@@ -52,6 +58,8 @@ function App() {
             setScene,
             foundItems,
             setFoundItems,
+            imageLoading,
+            setImageLoading,
           }}
         />
       </Box>
