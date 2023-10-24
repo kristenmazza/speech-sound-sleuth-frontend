@@ -7,6 +7,16 @@ import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 function App() {
+  type HiddenImageType = {
+    _id: string;
+    name: string;
+    imageUrl: string;
+    minX: number;
+    maxX: number;
+    minY: number;
+    maxY: number;
+  };
+
   const initialScene = {
     data: {
       hiddenImages: [],
@@ -21,11 +31,12 @@ function App() {
 
   const [isGamePage, setIsGamePage] = useState(false);
   const [scene, setScene] = useState(initialScene);
+  const [foundItems, setFoundItems] = useState<HiddenImageType[]>([]);
 
   return (
     <>
       <CssBaseline />
-      <Header isGamePage={isGamePage} scene={scene} />
+      <Header isGamePage={isGamePage} scene={scene} foundItems={foundItems} />
       <Box
         className='main'
         width='100%'
@@ -33,7 +44,16 @@ function App() {
         flexDirection='column'
         sx={{ padding: 0 }}
       >
-        <Outlet context={{ isGamePage, setIsGamePage, scene, setScene }} />
+        <Outlet
+          context={{
+            isGamePage,
+            setIsGamePage,
+            scene,
+            setScene,
+            foundItems,
+            setFoundItems,
+          }}
+        />
       </Box>
       <Footer scene={scene} />
     </>

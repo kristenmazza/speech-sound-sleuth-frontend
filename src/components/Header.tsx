@@ -27,14 +27,24 @@ type HeaderProps = {
       _id?: string;
     };
   };
+  foundItems: {
+    _id: string;
+    name: string;
+    imageUrl: string;
+    minX: number;
+    maxX: number;
+    minY: number;
+    maxY: number;
+  }[];
 };
 
 const pages = ['New Game', 'Leaderboard'];
 
-const Header: FC<HeaderProps> = ({ isGamePage, scene }) => {
+const Header: FC<HeaderProps> = ({ isGamePage, scene, foundItems }) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
+
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null,
   );
@@ -299,7 +309,7 @@ const Header: FC<HeaderProps> = ({ isGamePage, scene }) => {
         >
           <Toolbar disableGutters>
             <div className={styles.gameBar}>
-              <Accordian scene={scene} />
+              <Accordian scene={scene} foundItems={foundItems} />
             </div>
           </Toolbar>
         </AppBar>

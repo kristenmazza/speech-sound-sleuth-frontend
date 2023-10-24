@@ -1,6 +1,6 @@
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useGameContext } from '../../context/useGameContext';
 import styles from './HiddenImageMenu.module.css';
 import axios from 'axios';
@@ -59,7 +59,8 @@ const HiddenImageMenu: FC<HiddenImageMenuProps> = ({
   };
 
   const { scene } = useGameContext() as GameContextType;
-  const [foundItems, setFoundItems] = useState<HiddenImageType[]>([]);
+  // const [foundItems, setFoundItems] = useState<HiddenImageType[]>([]);
+  const { foundItems, setFoundItems } = useGameContext();
 
   const handleItemSelection = (hiddenImageId: string) => {
     handleImageMenuClose();
@@ -87,7 +88,6 @@ const HiddenImageMenu: FC<HiddenImageMenuProps> = ({
         {item.name}
       </MenuItem>
     ));
-    console.log(scene.data.hiddenImages);
   }
 
   const validateSelection = async (hiddenImageId: string) => {

@@ -83,7 +83,6 @@ export default function GameImage() {
     const yPercent = (yPx / visibleImageHeight) * 100;
 
     setCoordinates([xPercent, yPercent]);
-    console.log(xPercent, yPercent);
   };
 
   // Set zoom factor (scale)

@@ -43,6 +43,10 @@
   }
 }
 
+.found {
+  filter: brightness(50%);
+}
+
 .accordianDescription {
   display: flex;
   gap: 1rem;

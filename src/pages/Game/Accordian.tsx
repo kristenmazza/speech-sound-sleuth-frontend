@@ -29,15 +29,32 @@ type AccordianProps = {
   scene: {
     data: SceneData;
   };
+  foundItems: {
+    _id: string;
+    name: string;
+    imageUrl: string;
+    minX: number;
+    maxX: number;
+    minY: number;
+    maxY: number;
+  }[];
 };
 
-const BasicAccordian: FC<AccordianProps> = ({ scene }) => {
+const BasicAccordian: FC<AccordianProps> = ({ scene, foundItems }) => {
   let renderedHiddenImages;
   if (scene.data.hiddenImages) {
     const hiddenImages = scene.data.hiddenImages;
+    const foundItemIds = new Set(foundItems.map((obj) => obj._id));
 
     renderedHiddenImages = hiddenImages.map((image) => (
-      <div className={styles.hiddenImageContainer} key={image._id}>
+      <div
+        className={
+          foundItemIds.has(image._id)
+            ? `${styles.hiddenImageContainer} ${styles.found}`
+            : `${styles.hiddenImageContainer}`
+        }
+        key={image._id}
+      >
         <p>{image.name.toUpperCase()}</p>
         <div className={styles.hiddenImage}>
           <img src={image.imageUrl} alt={image.name} />
