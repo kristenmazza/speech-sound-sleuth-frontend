@@ -20,6 +20,10 @@ type ContextType = {
   setFoundItems: Dispatch<SetStateAction<HiddenImageType[]>>;
   imageLoading: boolean;
   setImageLoading: Dispatch<SetStateAction<boolean>>;
+  isPracticeTime: boolean;
+  setIsPracticeTime: Dispatch<SetStateAction<boolean>>;
+  isResumingTime: boolean;
+  setIsResumingTime: Dispatch<SetStateAction<boolean>>;
 };
 
 export function useGameContext() {

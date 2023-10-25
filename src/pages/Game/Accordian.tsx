@@ -5,7 +5,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import styles from './Accordian.module.css';
 import Timer from './Timer';
 import { Container } from '@mui/material';
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 
 type SceneData = {
   imageCreditLink?: string;
@@ -39,12 +39,18 @@ type AccordianProps = {
     minY: number;
     maxY: number;
   }[];
+  isPracticeTime: boolean;
+  isResumingTime: boolean;
+  setIsResumingTime: Dispatch<SetStateAction<boolean>>;
 };
 
 const BasicAccordian: FC<AccordianProps> = ({
   scene,
   foundItems,
   imageLoading,
+  isPracticeTime,
+  isResumingTime,
+  setIsResumingTime,
 }) => {
   let renderedHiddenImages;
   if (scene.data.hiddenImages) {
@@ -77,7 +83,13 @@ const BasicAccordian: FC<AccordianProps> = ({
           id='panel1a-header'
         >
           <div className={styles.accordianDescription}>
-            {!imageLoading && <Timer />}
+            {!imageLoading && (
+              <Timer
+                isPracticeTime={isPracticeTime}
+                isResumingTime={isResumingTime}
+                setIsResumingTime={setIsResumingTime}
+              />
+            )}
             <span className={styles.accordianPrompt}>View Targets</span>
           </div>
         </AccordionSummary>

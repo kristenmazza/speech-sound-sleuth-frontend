@@ -1,6 +1,6 @@
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import { useGameContext } from '../../context/useGameContext';
 import styles from './HiddenImageMenu.module.css';
 import axios from 'axios';
@@ -21,6 +21,9 @@ type HiddenImageMenuProps = {
   setCorrectCoordinates: (
     correctCoordinates: Array<[number, number] | undefined>,
   ) => void;
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  handlePracticeModalOpen: () => void;
 };
 
 type HiddenImageType = {
@@ -53,14 +56,15 @@ const HiddenImageMenu: FC<HiddenImageMenuProps> = ({
   coordinates,
   correctCoordinates,
   setCorrectCoordinates,
+  handlePracticeModalOpen,
 }) => {
   const handleImageMenuClose = () => {
     setImageMenu(null);
   };
 
   const { scene } = useGameContext() as GameContextType;
-  // const [foundItems, setFoundItems] = useState<HiddenImageType[]>([]);
   const { foundItems, setFoundItems } = useGameContext();
+  const { setIsPracticeTime, setIsResumingTime } = useGameContext();
 
   const handleItemSelection = (hiddenImageId: string) => {
     handleImageMenuClose();
@@ -101,7 +105,9 @@ const HiddenImageMenu: FC<HiddenImageMenuProps> = ({
       }
       if (response && response.data.message === 'Correct') {
         setCorrectCoordinates([...correctCoordinates, coordinates]);
-
+        setIsPracticeTime(true);
+        setIsResumingTime(false);
+        handlePracticeModalOpen();
         const foundItem = scene.data.hiddenImages.find(
           (item) => item._id === hiddenImageId,
         );

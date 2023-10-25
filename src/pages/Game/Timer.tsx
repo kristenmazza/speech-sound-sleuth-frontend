@@ -1,21 +1,20 @@
 import { useStopwatch } from 'react-timer-hook';
 import styles from './Timer.module.css';
-import { useEffect } from 'react';
+import { Dispatch, FC, SetStateAction, useEffect } from 'react';
 import axios from 'axios';
 
-export default function Timer() {
-  const {
-    totalSeconds,
-    seconds,
-    minutes,
-    hours,
-    isRunning,
-    start,
-    pause,
-    reset,
-  } = useStopwatch({ autoStart: true });
+type TimerProps = {
+  isPracticeTime: boolean;
+  isResumingTime: boolean;
+  setIsResumingTime: Dispatch<SetStateAction<boolean>>;
+};
 
-  const formatTime = (time) => {
+const Timer: FC<TimerProps> = ({ isPracticeTime, isResumingTime }) => {
+  const { seconds, minutes, hours, isRunning, start, pause } = useStopwatch({
+    autoStart: true,
+  });
+
+  const formatTime = (time: number) => {
     return String(time).padStart(2, '0');
   };
 
@@ -35,18 +34,24 @@ export default function Timer() {
     return () => window.removeEventListener('beforeunload', resetTimer);
   }, []);
 
-  const handlePause = async () => {
-    try {
-      const response = await axios.get(
-        import.meta.env.VITE_BACKEND_URL + '/pause-timer',
-      );
-      console.log(response);
-    } catch (err) {
-      const message = err instanceof Error ? err.message : String(err);
-      console.log(message);
+  useEffect(() => {
+    async function pauseTimer() {
+      try {
+        const response = await axios.get(
+          import.meta.env.VITE_BACKEND_URL + '/pause-timer',
+        );
+        pause();
+        console.log(response);
+      } catch (err) {
+        const message = err instanceof Error ? err.message : String(err);
+        console.log(message);
+      }
     }
-    pause();
-  };
+
+    if (isPracticeTime) {
+      pauseTimer();
+    }
+  }, [isPracticeTime, pause]);
 
   useEffect(() => {
     const startTimer = async () => {
@@ -64,18 +69,25 @@ export default function Timer() {
     startTimer();
   }, []);
 
-  const resumeTimer = async () => {
-    try {
-      const response = await axios.get(
-        import.meta.env.VITE_BACKEND_URL + '/resume-timer',
-      );
-      console.log(response);
-      start();
-    } catch (err) {
-      const message = err instanceof Error ? err.message : String(err);
-      console.log(message);
+  useEffect(() => {
+    async function resumeTimer() {
+      try {
+        const response = await axios.get(
+          import.meta.env.VITE_BACKEND_URL + '/resume-timer',
+        );
+        console.log(response);
+        start();
+      } catch (err) {
+        const message = err instanceof Error ? err.message : String(err);
+        console.log(message);
+      }
     }
-  };
+
+    if (isResumingTime) {
+      resumeTimer();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isResumingTime]);
 
   const getFinalTime = async () => {
     try {
@@ -95,9 +107,11 @@ export default function Timer() {
       <span>{formatTime(hours)}</span>:<span>{formatTime(minutes)}</span>:
       <span>{formatTime(seconds)}</span>
       <p>{isRunning ? 'Running' : 'Not running'}</p>
-      <button onClick={resumeTimer}>Resume</button>
-      <button onClick={handlePause}>Pause</button>
+      {/* <button onClick={resumeTimer}>Resume</button>
+      <button onClick={pauseTimer}>Pause</button> */}
       {/* <button onClick={reset}>Reset</button> */}
     </div>
   );
-}
+};
+
+export default Timer;

@@ -10,6 +10,7 @@ import ZoomControls from './ZoomControls';
 import HiddenImageMenu from './HiddenImageMenu';
 import { useGameContext } from '../../context/useGameContext';
 import { v4 as uuidv4 } from 'uuid';
+import PracticeModal from './PracticeModal';
 
 export default function GameImage() {
   type GameContextType = {
@@ -109,6 +110,9 @@ export default function GameImage() {
     );
   };
 
+  const [open, setOpen] = useState(false);
+  const handlePracticeModalOpen = () => setOpen(true);
+
   return (
     <>
       <div
@@ -176,8 +180,16 @@ export default function GameImage() {
           coordinates={coordinates}
           correctCoordinates={correctCoordinates}
           setCorrectCoordinates={setCorrectCoordinates}
+          open={open}
+          setOpen={setOpen}
+          handlePracticeModalOpen={handlePracticeModalOpen}
         />
       </div>
+      <PracticeModal
+        open={open}
+        setOpen={setOpen}
+        handlePracticeModalOpen={handlePracticeModalOpen}
+      />
     </>
   );
 }

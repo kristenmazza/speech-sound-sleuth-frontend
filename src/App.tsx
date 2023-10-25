@@ -33,6 +33,8 @@ function App() {
   const [scene, setScene] = useState(initialScene);
   const [foundItems, setFoundItems] = useState<HiddenImageType[]>([]);
   const [imageLoading, setImageLoading] = useState(true);
+  const [isPracticeTime, setIsPracticeTime] = useState(false);
+  const [isResumingTime, setIsResumingTime] = useState(false);
 
   return (
     <>
@@ -42,6 +44,9 @@ function App() {
         scene={scene}
         foundItems={foundItems}
         imageLoading={imageLoading}
+        isPracticeTime={isPracticeTime}
+        isResumingTime={isResumingTime}
+        setIsResumingTime={setIsResumingTime}
       />
       <Box
         className='main'
@@ -60,6 +65,10 @@ function App() {
             setFoundItems,
             imageLoading,
             setImageLoading,
+            isPracticeTime,
+            setIsPracticeTime,
+            isResumingTime,
+            setIsResumingTime,
           }}
         />
       </Box>

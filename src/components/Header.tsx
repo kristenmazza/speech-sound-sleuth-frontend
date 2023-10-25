@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Dispatch, SetStateAction, FC } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,7 +11,6 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import styles from './Header.module.css';
 import HelpModal from './HelpModal';
-import { FC } from 'react';
 import logo from '/images/logo-speech-sound-sleuth.png';
 import Accordian from '../pages/Game/Accordian';
 
@@ -37,6 +36,9 @@ type HeaderProps = {
     minY: number;
     maxY: number;
   }[];
+  isPracticeTime: boolean;
+  isResumingTime: boolean;
+  setIsResumingTime: Dispatch<SetStateAction<boolean>>;
 };
 
 const pages = ['New Game', 'Leaderboard'];
@@ -46,6 +48,9 @@ const Header: FC<HeaderProps> = ({
   scene,
   foundItems,
   imageLoading,
+  isPracticeTime,
+  isResumingTime,
+  setIsResumingTime,
 }) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
@@ -319,6 +324,9 @@ const Header: FC<HeaderProps> = ({
                 scene={scene}
                 foundItems={foundItems}
                 imageLoading={imageLoading}
+                isPracticeTime={isPracticeTime}
+                isResumingTime={isResumingTime}
+                setIsResumingTime={setIsResumingTime}
               />
             </div>
           </Toolbar>
