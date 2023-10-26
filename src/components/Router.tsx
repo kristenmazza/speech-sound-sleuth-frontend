@@ -3,8 +3,9 @@ import Home from '../pages/Home/Home';
 import App from '../App';
 import Sounds from '../pages/Sounds/Sounds';
 import Game from '../pages/Game/Game';
-import Leaderboard from '../pages/Leaderboard/Leaderboard';
 import Error from '../pages/Error/Error';
+import Leaderboard from '../pages/Leaderboard/Leaderboard';
+import SceneLeaderboard from '../pages/SceneLeaderboard/SceneLeaderboard';
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -21,6 +22,10 @@ const Router = () => {
         {
           path: '/leaderboard',
           element: <Leaderboard />,
+        },
+        {
+          path: '/leaderboard/:sceneTitle',
+          element: <SceneLeaderboard />,
         },
         {
           path: '/:sceneTitle/:sound/play',

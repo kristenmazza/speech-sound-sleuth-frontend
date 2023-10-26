@@ -1,0 +1,17 @@
+.sceneCardContainer {
+  flex: 1;
+  min-width: 150px;
+  max-width: 100%;
+
+  .sceneCard {
+    opacity: 0.8;
+    width: 100%;
+
+    background-color: rgb(59, 74, 105);
+    border: 2px solid #465676;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
