@@ -2,9 +2,15 @@ import { Container } from '@mui/material';
 import Box from '@mui/material/Box';
 import styles from './Sounds.module.css';
 import { useParams } from 'react-router-dom';
+import { useGameContext } from '../../context/useGameContext';
+import { useEffect } from 'react';
 
 export default function Sounds() {
   const { sceneTitle } = useParams<{ sceneTitle: string }>();
+  const { setIsGamePage } = useGameContext();
+  useEffect(() => {
+    setIsGamePage(false);
+  }, [setIsGamePage]);
 
   const busyStreet = [
     {

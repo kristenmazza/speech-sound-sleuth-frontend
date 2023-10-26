@@ -9,8 +9,15 @@ import Box from '@mui/material/Box';
 import styles from './Home.module.css';
 import StarsIcon from '@mui/icons-material/Stars';
 import ScenePreviews from './ScenePreviews';
+import { useGameContext } from '../../context/useGameContext';
+import { useEffect } from 'react';
 
 export default function Home() {
+  const { setIsGamePage } = useGameContext();
+  useEffect(() => {
+    setIsGamePage(false);
+  }, [setIsGamePage]);
+
   return (
     <Box component='main' sx={{ p: 3 }}>
       <Container maxWidth='md'>
