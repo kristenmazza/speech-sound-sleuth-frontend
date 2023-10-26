@@ -35,6 +35,8 @@ function App() {
   const [imageLoading, setImageLoading] = useState(true);
   const [isPracticeTime, setIsPracticeTime] = useState(false);
   const [isResumingTime, setIsResumingTime] = useState(false);
+  const [finalTime, setFinalTime] = useState<number | null>(null);
+  const [isGameFinished, setIsGameFinished] = useState(false);
 
   return (
     <>
@@ -47,6 +49,8 @@ function App() {
         isPracticeTime={isPracticeTime}
         isResumingTime={isResumingTime}
         setIsResumingTime={setIsResumingTime}
+        setFinalTime={setFinalTime}
+        isGameFinished={isGameFinished}
       />
       <Box
         className='main'
@@ -69,6 +73,10 @@ function App() {
             setIsPracticeTime,
             isResumingTime,
             setIsResumingTime,
+            isGameFinished,
+            setIsGameFinished,
+            finalTime,
+            setFinalTime,
           }}
         />
       </Box>

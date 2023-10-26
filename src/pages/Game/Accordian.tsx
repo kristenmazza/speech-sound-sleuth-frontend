@@ -42,6 +42,8 @@ type AccordianProps = {
   isPracticeTime: boolean;
   isResumingTime: boolean;
   setIsResumingTime: Dispatch<SetStateAction<boolean>>;
+  setFinalTime: Dispatch<SetStateAction<number | null>>;
+  isGameFinished: boolean;
 };
 
 const BasicAccordian: FC<AccordianProps> = ({
@@ -51,6 +53,8 @@ const BasicAccordian: FC<AccordianProps> = ({
   isPracticeTime,
   isResumingTime,
   setIsResumingTime,
+  setFinalTime,
+  isGameFinished,
 }) => {
   let renderedHiddenImages;
   if (scene.data.hiddenImages) {
@@ -88,6 +92,8 @@ const BasicAccordian: FC<AccordianProps> = ({
                 isPracticeTime={isPracticeTime}
                 isResumingTime={isResumingTime}
                 setIsResumingTime={setIsResumingTime}
+                setFinalTime={setFinalTime}
+                isGameFinished={isGameFinished}
               />
             )}
             <span className={styles.accordianPrompt}>View Targets</span>

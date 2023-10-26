@@ -7,6 +7,8 @@ import { useGameContext } from '../../context/useGameContext';
 import PracticeCheckboxes from './PracticeCheckboxes';
 import styles from './PracticeModal.module.css';
 import NicknameForm from './NicknameForm';
+import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const style = {
   position: 'absolute' as const,
@@ -29,17 +31,57 @@ type PracticeModalProps = {
   handlePracticeModalOpen: () => void;
 };
 
+type CustomError = {
+  response: {
+    request: {
+      response: string;
+    };
+  };
+};
+
 const PracticeModal: FC<PracticeModalProps> = ({ open, setOpen }) => {
   const initialFoundItemState = { name: '', imageUrl: '' };
-  const { setIsPracticeTime, setIsResumingTime, foundItems } = useGameContext();
+  const {
+    setIsPracticeTime,
+    setIsResumingTime,
+    foundItems,
+    isGameFinished,
+    setIsGameFinished,
+    finalTime,
+  } = useGameContext();
   const [lastFoundItem, setLastFoundItem] = useState(initialFoundItemState);
   const [foundAllItems, setFoundAllItems] = useState(false);
-  const [isGameFinished, setIsGameFinished] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const { sceneTitle, sound } = useParams();
+  const [nickname, setNickname] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const handleClose = () => {
     setOpen(false);
     setIsPracticeTime(false);
     setIsResumingTime(true);
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      await axios.post(
+        import.meta.env.VITE_BACKEND_URL + `/${sceneTitle}/${sound}/scores`,
+        {
+          nickname: nickname,
+          timeInS: finalTime,
+          sound: sound,
+          scene: sceneTitle,
+        },
+      );
+      setError(null);
+      navigate('/leaderboard');
+    } catch (err) {
+      const customError = JSON.parse(
+        (err as CustomError).response.request.response,
+      ).errors[0].msg;
+      setError(customError);
+    }
   };
 
   const handleEndGame = () => {
@@ -51,11 +93,21 @@ const PracticeModal: FC<PracticeModalProps> = ({ open, setOpen }) => {
       setLastFoundItem(foundItems.slice(-1)[0]);
     }
 
-    console.log(foundItems);
     if (foundItems.length === 4) {
       setFoundAllItems(true);
     }
   }, [foundItems]);
+
+  const displayError = () => {
+    return (
+      <div
+        className={error ? styles.error : styles.offscreen}
+        aria-live='assertive'
+      >
+        {error}
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -123,24 +175,18 @@ const PracticeModal: FC<PracticeModalProps> = ({ open, setOpen }) => {
               id='practice'
               sx={{
                 padding: '1rem 0 1.5rem 0',
-                fontSize: '1.3rem',
+                fontSize: '1.2rem',
                 textAlign: 'center',
               }}
             >
-              You found all of the hidden items. Enter your nickname to submit
-              your score.
+              You found all of the hidden items! Enter your nickname to submit
+              your score to the leaderboard.
             </Typography>
-            <NicknameForm />
-            <Button
-              variant='contained'
-              sx={{
-                backgroundColor: 'rgb(46, 59, 85)',
-                '&:hover': { backgroundColor: 'rgb(56, 71, 101)' },
-              }}
-              //   onClick={handleEndGame}
-            >
-              Submit
-            </Button>
+            <NicknameForm
+              setNickname={setNickname}
+              handleSubmit={handleSubmit}
+            />
+            {error ? displayError() : ''}
           </Box>
         )}
       </Modal>

@@ -24,6 +24,10 @@ type ContextType = {
   setIsPracticeTime: Dispatch<SetStateAction<boolean>>;
   isResumingTime: boolean;
   setIsResumingTime: Dispatch<SetStateAction<boolean>>;
+  finalTime: number;
+  setFinalTime: Dispatch<SetStateAction<number | null>>;
+  isGameFinished: boolean;
+  setIsGameFinished: Dispatch<SetStateAction<boolean>>;
 };
 
 export function useGameContext() {

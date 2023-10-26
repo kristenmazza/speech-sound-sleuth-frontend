@@ -7,10 +7,17 @@ type TimerProps = {
   isPracticeTime: boolean;
   isResumingTime: boolean;
   setIsResumingTime: Dispatch<SetStateAction<boolean>>;
+  setFinalTime: Dispatch<SetStateAction<number | null>>;
+  isGameFinished: boolean;
 };
 
-const Timer: FC<TimerProps> = ({ isPracticeTime, isResumingTime }) => {
-  const { seconds, minutes, hours, isRunning, start, pause } = useStopwatch({
+const Timer: FC<TimerProps> = ({
+  isPracticeTime,
+  isResumingTime,
+  setFinalTime,
+  isGameFinished,
+}) => {
+  const { seconds, minutes, hours, start, pause } = useStopwatch({
     autoStart: true,
   });
 
@@ -89,27 +96,31 @@ const Timer: FC<TimerProps> = ({ isPracticeTime, isResumingTime }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isResumingTime]);
 
-  const getFinalTime = async () => {
-    try {
-      const response = await axios.get(
-        import.meta.env.VITE_BACKEND_URL + '/final-time',
-      );
-      console.log(response);
-      pause();
-    } catch (err) {
-      const message = err instanceof Error ? err.message : String(err);
-      console.log(message);
+  useEffect(() => {
+    const getFinalTime = async () => {
+      console.log(import.meta.env.VITE_BACKEND_URL + '/final-time');
+      try {
+        const response = await axios.get(
+          import.meta.env.VITE_BACKEND_URL + '/final-time',
+        );
+        const time = response.data.finalTime.toFixed(2);
+        console.log(time);
+        setFinalTime(time);
+      } catch (err) {
+        const message = err instanceof Error ? err.message : String(err);
+        console.log(message);
+      }
+    };
+
+    if (isGameFinished) {
+      getFinalTime();
     }
-  };
+  }, [isGameFinished, setFinalTime]);
 
   return (
     <div className={styles.timer} style={{ textAlign: 'center' }}>
       <span>{formatTime(hours)}</span>:<span>{formatTime(minutes)}</span>:
       <span>{formatTime(seconds)}</span>
-      <p>{isRunning ? 'Running' : 'Not running'}</p>
-      {/* <button onClick={resumeTimer}>Resume</button>
-      <button onClick={pauseTimer}>Pause</button> */}
-      {/* <button onClick={reset}>Reset</button> */}
     </div>
   );
 };

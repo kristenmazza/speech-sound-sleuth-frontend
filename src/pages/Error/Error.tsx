@@ -1,10 +1,15 @@
 import { useRouteError, isRouteErrorResponse } from 'react-router-dom';
 import styles from './Error.module.css';
 import { Container, Toolbar } from '@mui/material';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
+import { useGameContext } from '../../context/useGameContext';
 
 const Error: FC = () => {
   const error = useRouteError();
+  const { setIsGamePage } = useGameContext();
+  useEffect(() => {
+    setIsGamePage(false);
+  }, [setIsGamePage]);
 
   return (
     <Container

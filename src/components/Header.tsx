@@ -39,6 +39,8 @@ type HeaderProps = {
   isPracticeTime: boolean;
   isResumingTime: boolean;
   setIsResumingTime: Dispatch<SetStateAction<boolean>>;
+  setFinalTime: Dispatch<SetStateAction<number | null>>;
+  isGameFinished: boolean;
 };
 
 const pages = ['New Game', 'Leaderboard'];
@@ -51,6 +53,8 @@ const Header: FC<HeaderProps> = ({
   isPracticeTime,
   isResumingTime,
   setIsResumingTime,
+  setFinalTime,
+  isGameFinished,
 }) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
@@ -327,6 +331,8 @@ const Header: FC<HeaderProps> = ({
                 isPracticeTime={isPracticeTime}
                 isResumingTime={isResumingTime}
                 setIsResumingTime={setIsResumingTime}
+                setFinalTime={setFinalTime}
+                isGameFinished={isGameFinished}
               />
             </div>
           </Toolbar>

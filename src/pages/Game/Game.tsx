@@ -6,6 +6,14 @@ import GameImage from './GameImage';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
+type CustomError = {
+  response: {
+    request: {
+      response: string;
+    };
+  };
+};
+
 const Game: FC = () => {
   const { setIsGamePage, setScene } = useGameContext();
   const { sceneTitle, sound } = useParams();
@@ -24,8 +32,9 @@ const Game: FC = () => {
         setScene(response);
         setError(null);
       } catch (err) {
-        const message = err instanceof Error ? err.message : String(err);
-        console.log(message);
+        const message = JSON.parse(
+          (err as CustomError).response.request.response,
+        ).message;
         setError(message);
       }
     };
@@ -35,6 +44,7 @@ const Game: FC = () => {
 
   return (
     <Box component='main' className={styles.main} sx={{ p: 3 }}>
+      {error ? <p className={styles.error}>{error}</p> : ''}
       <GameImage />
     </Box>
   );

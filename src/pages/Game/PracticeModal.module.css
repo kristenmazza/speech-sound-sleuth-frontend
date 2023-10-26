@@ -2,3 +2,16 @@
   height: 100px;
   margin: 1rem 0 2rem 0;
 }
+
+.error {
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin: 1rem;
+  align-self: center;
+}
+
+.offscreen {
+  position: absolute;
+  left: -9999px;
+}
