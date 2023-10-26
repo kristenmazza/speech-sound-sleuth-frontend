@@ -31,30 +31,42 @@ type StickyFooterProps = {
       _id?: string;
     };
   };
+  isGamePage: boolean;
 };
 
-const StickyFooter: FC<StickyFooterProps> = ({ scene }) => {
+const StickyFooter: FC<StickyFooterProps> = ({ scene, isGamePage }) => {
+  const showSceneCredit = () => {
+    return (
+      <>
+        'Scene illustrated by '
+        <Link
+          color='inherit'
+          aria-label={
+            scene.data.imageCreditName + ' website - link opens in a new tab'
+          }
+          href={scene.data.imageCreditLink}
+          target='_blank'
+        >
+          {scene.data.imageCreditName}
+        </Link>
+      </>
+    );
+  };
+
   return (
     <>
-      <Box className={styles.footer} component='footer'>
+      <Box
+        className={styles.footer}
+        component='footer'
+        sx={{ marginTop: '2rem' }}
+      >
         <Container maxWidth='sm'>
           <Typography
             className={styles.copyright}
             variant='body2'
             color='text.secondary'
           >
-            Scene illustrated by{' '}
-            <Link
-              color='inherit'
-              aria-label={
-                scene.data.imageCreditName +
-                ' website - link opens in a new tab'
-              }
-              href={scene.data.imageCreditLink}
-              target='_blank'
-            >
-              {scene.data.imageCreditName}
-            </Link>
+            {isGamePage ? showSceneCredit() : ''}
           </Typography>
           <Copyright />
         </Container>

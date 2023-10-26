@@ -80,7 +80,7 @@ function App() {
           }}
         />
       </Box>
-      <Footer scene={scene} />
+      <Footer scene={scene} isGamePage={isGamePage} />
     </>
   );
 }
