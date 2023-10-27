@@ -1,3 +1,9 @@
 .iconButtonPadding {
   padding: 0 !important;
 }
+
+.modalList {
+  padding: 10px 10px 10px 20px;
+  margin: 0;
+  font-size: 1rem;
+}
