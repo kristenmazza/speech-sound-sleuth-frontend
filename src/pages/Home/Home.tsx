@@ -25,12 +25,12 @@ export default function Home() {
           <div className={styles.description}>
             <h1 className={styles.heading}>
               A <span className={styles.coloredText}>fun</span> hidden pictures
-              game
+              speech therapy game
             </h1>
             <p>
-              Each scene features images containing common speech sounds.
-              Challenge yourself to find the hidden images in each scene, and
-              see how fast you can do it.
+              Each scene features items containing common speech sounds.
+              Challenge yourself to find the hidden items in each scene, and see
+              how fast you can do it.
             </p>
             <List className={styles.list}>
               <ListItem disablePadding>
