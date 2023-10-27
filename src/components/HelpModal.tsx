@@ -73,8 +73,10 @@ export default function HelpModal() {
                 all the items. The game ends when you've found them all!
               </li>
               <li>
-                <b>Quick! The Timer is Running:</b> Be fast, because the timer
-                starts as soon as the game begins.
+                <b>Watch the Timer:</b> Be fast while searching, because the
+                timer starts as soon as the game begins. However, don't rush
+                when practicing your sounds. The timer stops while you're
+                practicing!
               </li>
             </ol>
           </Typography>
