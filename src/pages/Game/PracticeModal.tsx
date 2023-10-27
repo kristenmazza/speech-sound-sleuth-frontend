@@ -74,7 +74,7 @@ const PracticeModal: FC<PracticeModalProps> = ({ open, setOpen }) => {
         },
       );
       setError(null);
-      navigate('/leaderboard');
+      navigate(`/leaderboard/${sceneTitle}/#${sound}`);
     } catch (err) {
       const customError = JSON.parse(
         (err as CustomError).response.request.response,
