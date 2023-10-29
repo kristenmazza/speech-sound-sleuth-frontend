@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="21.628365mm"
+   height="21.628342mm"
+   viewBox="0 0 21.628365 21.628342"
+   version="1.1"
+   id="svg5"
+   inkscape:export-filename="../repos/speech-sound-sleuth-frontend/public/images/logo-speech-sound-sleuth.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   inkscape:version="1.2.2 (b0a8486, 2022-12-01)"
+   sodipodi:docname="speech-sound-sleuth.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.1145577"
+     inkscape:cx="521.73163"
+     inkscape:cy="317.16618"
+     inkscape:window-width="1830"
+     inkscape:window-height="743"
+     inkscape:window-x="6"
+     inkscape:window-y="234"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-121.45376,-164.34776)">
+    <rect
+       style="display:none;fill:#363636;fill-opacity:1;stroke-width:0.273;stroke-miterlimit:0.4;stroke-dasharray:none;stroke-dashoffset:11.7;paint-order:stroke fill markers"
+       id="rect4371"
+       width="217.55386"
+       height="65.614738"
+       x="-2.0504606"
+       y="109.49459"
+       ry="0.48432204" />
+    <circle
+       style="fill:#2d3b55;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:0.4;stroke-dashoffset:11.7;paint-order:stroke fill markers"
+       id="path536-9"
+       cx="132.26794"
+       cy="175.16194"
+       r="10.814179"
+       inkscape:export-filename="speech-sound-sleuth/sss-logo2.svg"
+       inkscape:export-xdpi="352.31528"
+       inkscape:export-ydpi="352.31528" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:11.9484px;font-family:Roboto;-inkscape-font-specification:'Roboto, Heavy';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:0.4;stroke-dasharray:none;stroke-dashoffset:11.7;stroke-opacity:1;paint-order:stroke fill markers"
+       x="-8.7619457"
+       y="-869.4856"
+       id="text506-7-4"
+       transform="matrix(2.9579621,-2.6930769,-0.17157311,-0.18186183,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan504-9-1"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
+         x="-8.7619457"
+         y="-869.4856">I</tspan></text>
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:2.42345;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:0.4;stroke-dasharray:none;stroke-dashoffset:11.7;stroke-opacity:1;paint-order:stroke fill markers"
+       id="path1739-8"
+       cx="-21.010048"
+       cy="218.57295"
+       rx="3.5977397"
+       ry="3.4616811"
+       transform="matrix(0.74022234,-0.67236217,0.68707993,0.72658184,0,0)" />
+  </g>
+</svg>
