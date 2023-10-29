@@ -27,7 +27,7 @@ const Game: FC = () => {
     const getScene = async () => {
       try {
         const response = await axios.get(
-          import.meta.env.VITE_BACKEND_URL + `${sceneTitle}/${sound}`,
+          import.meta.env.VITE_BACKEND_URL + `/${sceneTitle}/${sound}`,
         );
         setScene(response);
         setError(null);
