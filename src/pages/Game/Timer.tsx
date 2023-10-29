@@ -36,9 +36,7 @@ const Timer: FC<TimerProps> = ({
       }
     };
 
-    // Ensures resetTimer is only called before page reload
-    window.addEventListener('beforeunload', resetTimer);
-    return () => window.removeEventListener('beforeunload', resetTimer);
+    resetTimer();
   }, []);
 
   useEffect(() => {
