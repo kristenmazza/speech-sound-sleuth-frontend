@@ -38,7 +38,7 @@ const StickyFooter: FC<StickyFooterProps> = ({ scene, isGamePage }) => {
   const showSceneCredit = () => {
     return (
       <>
-        'Scene illustrated by '
+        Scene illustrated by{' '}
         <Link
           color='inherit'
           aria-label={
