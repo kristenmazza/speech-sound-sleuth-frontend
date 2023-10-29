@@ -29,10 +29,9 @@ const Timer: FC<TimerProps> = ({
     const resetTimer = async () => {
       try {
         await axios.get(import.meta.env.VITE_BACKEND_URL + '/reset-timer');
-        console.log('Timer reset');
       } catch (err) {
         const message = err instanceof Error ? err.message : String(err);
-        console.log(message);
+        console.error(message);
       }
     };
 
@@ -42,14 +41,11 @@ const Timer: FC<TimerProps> = ({
   useEffect(() => {
     async function pauseTimer() {
       try {
-        const response = await axios.get(
-          import.meta.env.VITE_BACKEND_URL + '/pause-timer',
-        );
+        await axios.get(import.meta.env.VITE_BACKEND_URL + '/pause-timer');
         pause();
-        console.log(response);
       } catch (err) {
         const message = err instanceof Error ? err.message : String(err);
-        console.log(message);
+        console.error(message);
       }
     }
 
@@ -61,13 +57,10 @@ const Timer: FC<TimerProps> = ({
   useEffect(() => {
     const startTimer = async () => {
       try {
-        const response = await axios.get(
-          import.meta.env.VITE_BACKEND_URL + '/start-timer',
-        );
-        console.log(response);
+        await axios.get(import.meta.env.VITE_BACKEND_URL + '/start-timer');
       } catch (err) {
         const message = err instanceof Error ? err.message : String(err);
-        console.log(message);
+        console.error(message);
       }
     };
 
@@ -77,14 +70,11 @@ const Timer: FC<TimerProps> = ({
   useEffect(() => {
     async function resumeTimer() {
       try {
-        const response = await axios.get(
-          import.meta.env.VITE_BACKEND_URL + '/resume-timer',
-        );
-        console.log(response);
+        await axios.get(import.meta.env.VITE_BACKEND_URL + '/resume-timer');
         start();
       } catch (err) {
         const message = err instanceof Error ? err.message : String(err);
-        console.log(message);
+        console.error(message);
       }
     }
 
@@ -96,17 +86,15 @@ const Timer: FC<TimerProps> = ({
 
   useEffect(() => {
     const getFinalTime = async () => {
-      console.log(import.meta.env.VITE_BACKEND_URL + '/final-time');
       try {
         const response = await axios.get(
           import.meta.env.VITE_BACKEND_URL + '/final-time',
         );
         const time = response.data.finalTime.toFixed(2);
-        console.log(time);
         setFinalTime(time);
       } catch (err) {
         const message = err instanceof Error ? err.message : String(err);
-        console.log(message);
+        console.error(message);
       }
     };
 

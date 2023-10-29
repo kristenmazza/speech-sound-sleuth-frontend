@@ -119,7 +119,7 @@ const HiddenImageMenu: FC<HiddenImageMenuProps> = ({
     } catch (err) {
       if (err) {
         const message = err instanceof Error ? err.message : String(err);
-        console.log(message);
+        console.error(message);
       }
     }
   };
