@@ -1,27 +1,27 @@
-# React + TypeScript + Vite
+# Speech Sound Sleuth (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Speech Sound Sleuth is a gamefied adaptation of the classic "Where's Waldo?" concept, designed to support speech therapy. In this game, players are presented with various scenes that contain items associated with specific speech sounds. The game is timed, so players are encouraged to find the items as fast as possible. Once an item is found, the timer pauses, and the player is prompted to practice saying the item's name before continuing the game. After all items are found, the player can enter a nickname to submit to the leaderboard.
 
-Currently, two official plugins are available:
+The frontend is responsible for providing a user-friendly interface that allows players to interact with the game scenes and speech sounds.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Backend Repo: https://github.com/kristenmazza/speech-sound-sleuth-backend
 
-## Expanding the ESLint configuration
+See Speech Sound Sleuth live: https://speech-sound-sleuth.netlify.app/ :point_left:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+![Screenshot](/public/sss-combo-screenshot.png)
 
-- Configure the top-level `parserOptions` property like this:
+## Technology Used
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+- HTML, CSS, and JavaScript
+- React.js
+- TypeScript
+- Material UI
+- [React Zoom Pan Pinch library](https://bettertyped.github.io/react-zoom-pan-pinch/?path=/story/docs-props--page) (for image manipulation)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Getting Started
+
+Follow these steps to set up the Speech Sound Sleuth (Frontend) on your local machine:
+
+1. Install dependencies using `npm install`.
+2. Use `npm run dev` to start the development server.
+3. Access the game interface by opening a web browser and going to the provided URL (e.g., http://localhost:3000).
