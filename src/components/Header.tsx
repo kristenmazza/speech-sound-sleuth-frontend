@@ -13,7 +13,7 @@ import styles from './Header.module.css';
 import HelpModal from './HelpModal';
 import logo from '/images/logo-speech-sound-sleuth.png';
 import Accordian from '../pages/Game/Accordian';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type HeaderProps = {
   isGamePage: boolean;
@@ -64,6 +64,7 @@ const Header: FC<HeaderProps> = ({
   );
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -142,11 +143,29 @@ const Header: FC<HeaderProps> = ({
                     }}
                   >
                     <MenuItem onClick={handleNewGameClick}>
-                      <Typography textAlign='center'>New Game</Typography>
+                      <Typography
+                        className={
+                          location.pathname === '/'
+                            ? `${styles.activeLink}`
+                            : ''
+                        }
+                        textAlign='center'
+                      >
+                        New Game
+                      </Typography>
                     </MenuItem>
 
                     <MenuItem onClick={handleLeaderboardClick}>
-                      <Typography textAlign='center'>Leaderboard</Typography>
+                      <Typography
+                        textAlign='center'
+                        className={
+                          location.pathname === '/leaderboard'
+                            ? `${styles.activeLink}`
+                            : ''
+                        }
+                      >
+                        Leaderboard
+                      </Typography>
                     </MenuItem>
                   </Menu>
                 </Box>
@@ -176,6 +195,9 @@ const Header: FC<HeaderProps> = ({
                       color: 'rgb(215, 215, 215)',
                       display: 'block',
                     }}
+                    className={
+                      location.pathname === '/' ? `${styles.activeLink}` : ''
+                    }
                   >
                     New Game
                   </Button>
@@ -187,6 +209,11 @@ const Header: FC<HeaderProps> = ({
                       color: 'rgb(215, 215, 215)',
                       display: 'block',
                     }}
+                    className={
+                      location.pathname === '/leaderboard'
+                        ? `${styles.activeLink}`
+                        : ''
+                    }
                   >
                     Leaderboard
                   </Button>
@@ -267,11 +294,27 @@ const Header: FC<HeaderProps> = ({
                   }}
                 >
                   <MenuItem onClick={handleNewGameClick}>
-                    <Typography textAlign='center'>New Game</Typography>
+                    <Typography
+                      textAlign='center'
+                      className={
+                        location.pathname === '/' ? `${styles.activeLink}` : ''
+                      }
+                    >
+                      New Game
+                    </Typography>
                   </MenuItem>
 
                   <MenuItem onClick={handleLeaderboardClick}>
-                    <Typography textAlign='center'>Leaderboard</Typography>
+                    <Typography
+                      className={
+                        location.pathname === '/leaderboard'
+                          ? `${styles.activeLink}`
+                          : ''
+                      }
+                      textAlign='center'
+                    >
+                      Leaderboard
+                    </Typography>
                   </MenuItem>
                 </Menu>
               </Box>
@@ -301,6 +344,9 @@ const Header: FC<HeaderProps> = ({
                     color: 'rgb(215, 215, 215)',
                     display: 'block',
                   }}
+                  className={
+                    location.pathname === '/' ? `${styles.activeLink}` : ''
+                  }
                 >
                   New Game
                 </Button>
@@ -311,6 +357,11 @@ const Header: FC<HeaderProps> = ({
                     color: 'rgb(215, 215, 215)',
                     display: 'block',
                   }}
+                  className={
+                    location.pathname === '/leaderboard'
+                      ? `${styles.activeLink}`
+                      : ''
+                  }
                 >
                   Leaderboard
                 </Button>

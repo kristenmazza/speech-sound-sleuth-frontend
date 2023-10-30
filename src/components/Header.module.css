@@ -41,3 +41,8 @@ header.mainHeader.mainHeaderBorder {
   padding: 0 !important;
   margin-right: 1rem;
 }
+
+.activeLink {
+  text-decoration: underline !important;
+  text-underline-offset: 0.5em;
+}
