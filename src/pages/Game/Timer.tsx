@@ -35,11 +35,6 @@ const Timer: FC<TimerProps> = ({
 
   useEffect(() => {
     async function pauseTimer() {
-      console.log('Pausing timer with sessionID:', sessionID);
-
-      console.log(
-        `${import.meta.env.VITE_BACKEND_URL}/pause-timer/${sessionID}`,
-      );
       try {
         await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/pause-timer/${sessionID}`,
@@ -75,8 +70,6 @@ const Timer: FC<TimerProps> = ({
 
   useEffect(() => {
     async function resumeTimer() {
-      console.log('Resuming timer with sessionID:', sessionID);
-
       try {
         await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/resume-timer/${sessionID}`,
