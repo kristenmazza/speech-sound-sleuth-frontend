@@ -1,6 +1,13 @@
 import { useStopwatch } from 'react-timer-hook';
 import styles from './Timer.module.css';
-import { Dispatch, FC, SetStateAction, useEffect } from 'react';
+import {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import axios from 'axios';
 
 type TimerProps = {
@@ -20,28 +27,23 @@ const Timer: FC<TimerProps> = ({
   const { seconds, minutes, hours, start, pause } = useStopwatch({
     autoStart: true,
   });
+  const [sessionID, setSessionID] = useState<string>('');
 
   const formatTime = (time: number) => {
     return String(time).padStart(2, '0');
   };
 
   useEffect(() => {
-    const resetTimer = async () => {
-      try {
-        await axios.get(import.meta.env.VITE_BACKEND_URL + '/reset-timer');
-      } catch (err) {
-        const message = err instanceof Error ? err.message : String(err);
-        console.error(message);
-      }
-    };
-
-    resetTimer();
-  }, []);
-
-  useEffect(() => {
     async function pauseTimer() {
+      console.log('Pausing timer with sessionID:', sessionID);
+
+      console.log(
+        `${import.meta.env.VITE_BACKEND_URL}/pause-timer/${sessionID}`,
+      );
       try {
-        await axios.get(import.meta.env.VITE_BACKEND_URL + '/pause-timer');
+        await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/pause-timer/${sessionID}`,
+        );
         pause();
       } catch (err) {
         const message = err instanceof Error ? err.message : String(err);
@@ -52,12 +54,16 @@ const Timer: FC<TimerProps> = ({
     if (isPracticeTime) {
       pauseTimer();
     }
-  }, [isPracticeTime, pause]);
+  }, [isPracticeTime, pause, sessionID]);
 
   useEffect(() => {
     const startTimer = async () => {
       try {
-        await axios.get(import.meta.env.VITE_BACKEND_URL + '/start-timer');
+        const response = await axios.get(
+          import.meta.env.VITE_BACKEND_URL + '/start-timer',
+        );
+        const responseSessionID = response.data.sessionID;
+        setSessionID(responseSessionID);
       } catch (err) {
         const message = err instanceof Error ? err.message : String(err);
         console.error(message);
@@ -69,8 +75,12 @@ const Timer: FC<TimerProps> = ({
 
   useEffect(() => {
     async function resumeTimer() {
+      console.log('Resuming timer with sessionID:', sessionID);
+
       try {
-        await axios.get(import.meta.env.VITE_BACKEND_URL + '/resume-timer');
+        await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/resume-timer/${sessionID}`,
+        );
         start();
       } catch (err) {
         const message = err instanceof Error ? err.message : String(err);
@@ -82,13 +92,13 @@ const Timer: FC<TimerProps> = ({
       resumeTimer();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isResumingTime]);
+  }, [isResumingTime, sessionID]);
 
   useEffect(() => {
     const getFinalTime = async () => {
       try {
         const response = await axios.get(
-          import.meta.env.VITE_BACKEND_URL + '/final-time',
+          `${import.meta.env.VITE_BACKEND_URL}/final-time/${sessionID}`,
         );
         const time = response.data.finalTime.toFixed(2);
         setFinalTime(time);
@@ -101,7 +111,29 @@ const Timer: FC<TimerProps> = ({
     if (isGameFinished) {
       getFinalTime();
     }
-  }, [isGameFinished, setFinalTime]);
+  }, [isGameFinished, setFinalTime, sessionID]);
+
+  const disconnectPlayer = useCallback(async () => {
+    if (sessionID) {
+      try {
+        await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/disconnect-player/${sessionID}`,
+        );
+        setSessionID('');
+      } catch (err) {
+        const message = err instanceof Error ? err.message : String(err);
+        console.error(message);
+      }
+    }
+  }, [sessionID, setSessionID]);
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', disconnectPlayer);
+
+    return () => {
+      window.removeEventListener('beforeunload', disconnectPlayer);
+    };
+  }, [disconnectPlayer]);
 
   return (
     <div className={styles.timer} style={{ textAlign: 'center' }}>
