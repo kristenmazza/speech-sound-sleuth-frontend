@@ -1,10 +1,6 @@
 import styles from './Game.module.css';
 import React, { useState } from 'react';
-import {
-  TransformWrapper,
-  TransformComponent,
-  ReactZoomPanPinchRef,
-} from 'react-zoom-pan-pinch';
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import { CircularProgress } from '@mui/material';
 import ZoomControls from './ZoomControls';
 import HiddenImageMenu from './HiddenImageMenu';
@@ -35,7 +31,6 @@ export default function GameImage() {
   const [coordinates, setCoordinates] = useState<[number, number] | undefined>(
     undefined,
   );
-  const [scale, setScale] = useState<number>(1.01);
   const [correctCoordinates, setCorrectCoordinates] = useState<
     Array<[number, number] | undefined>
   >([]);
@@ -70,27 +65,15 @@ export default function GameImage() {
 
     const imageRect = image.getBoundingClientRect();
 
-    // Calculate width/height of the zoomed-in image's visible area on the screen
-    const visibleImageWidth = imageRect.width / scale;
-    const visibleImageHeight = imageRect.height / scale;
+    // Calculate adjusted position in pixels of click event
+    const xPx = event.clientX - imageRect.left;
+    const yPx = event.clientY - imageRect.top;
 
-    // Calculate adjusted position in pixels of click event within zoomed image
-    const xPx = (event.clientX - imageRect.left) / scale;
-    const yPx = (event.clientY - imageRect.top) / scale;
-
-    // Calculate position as a percentage within the visible area of the zoomed image
-    const xPercent = (xPx / visibleImageWidth) * 100;
-    const yPercent = (yPx / visibleImageHeight) * 100;
+    // Calculate position as a percentage within the image
+    const xPercent = (xPx / imageRect.width) * 100;
+    const yPercent = (yPx / imageRect.height) * 100;
 
     setCoordinates([xPercent, yPercent]);
-  };
-
-  // Set zoom factor (scale)
-  const handleTransform = (
-    _ref: ReactZoomPanPinchRef,
-    state: { scale: number },
-  ) => {
-    setScale(state.scale);
   };
 
   const displayCorrectTargets = () => {
@@ -130,7 +113,6 @@ export default function GameImage() {
           initialScale={1.01}
           initialPositionX={0}
           initialPositionY={0}
-          onTransformed={handleTransform}
           minScale={0.8}
         >
           {({ zoomIn, zoomOut, resetTransform }) => (
