@@ -12,7 +12,7 @@ See Speech Sound Sleuth live: https://speech-sound-sleuth.netlify.app/ :point_le
 
 ## Technology Used
 
-- HTML, CSS, and JavaScript
+- HTML and CSS
 - React.js
 - TypeScript
 - Material UI
